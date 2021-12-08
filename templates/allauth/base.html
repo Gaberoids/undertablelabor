@@ -1,0 +1,60 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    {% block meta %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- added for EI compatibility -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% endblock %}
+
+    {% block extra_meta %}
+    {% endblock %}
+
+    {% block corecss %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% endblock %}
+
+    {% block extra_css %}
+    {% endblock %}
+
+    {% block corejs %}
+    <!-- Stripe. Goes here to be applied in all pages due to security features built in the tool -->
+    <script src="https://js.stripe.com/v3/"></script>
+    {% endblock %}
+
+    {% block extra_js %}
+    {% endblock %}
+
+    <title>Under Table Services</title>
+</head>
+
+<body>
+    <header class="">
+        <!-- navbar -->
+        <p>UnderTableServices</p>
+        <p>All services</p>
+        <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+        <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+        <p>Mail Box</p>
+        
+    </header>
+
+    {% block page_header %}
+    {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+
+    {% block postloadjs %}
+    <script type="text/javascript">
+        $('.toast').toast('show');
+        // the above will show the message in any html element with the toast class
+    </script>
+    {% endblock %}
+
+</body>
+
+</html>
