@@ -38,6 +38,20 @@
         <p>All services</p>
         <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
         <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+          <div>
+              <!-- django tags -->
+              {% if request.user.is_authenticated %}
+              {% if request.user.is_superuser %}
+              <a href="{% url 'add_product' %}" class="">Product Management</a>
+              {% endif %}
+              <a href="{% url 'profile' %}" class="">My Profile</a>
+              <a href="{% url 'account_logout' %}" class="">Logout</a>
+              <!-- url 'account_logout, _signup, _login comes from allauth' -->
+              {% else %}
+              <a href="{% url 'account_signup' %}" class="">Register</a>
+              <a href="{% url 'account_login' %}" class="">Login</a>
+              {% endif %}
+          </div>
         <p>Mail Box</p>
         
     </header>
@@ -49,10 +63,10 @@
     {% endblock %}
 
     {% block postloadjs %}
-    <script type="text/javascript">
-        $('.toast').toast('show');
-        // the above will show the message in any html element with the toast class
-    </script>
+    <!-- <script type="text/javascript">
+        $('.toast').toast('show'); -->
+        <!-- // the above will show the message in any html element with the toast class -->
+    <!-- </script> -->
     {% endblock %}
 
 </body>

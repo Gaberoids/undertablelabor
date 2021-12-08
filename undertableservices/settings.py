@@ -47,7 +47,11 @@ INSTALLED_APPS = [
     'home',
     'profiles',
 
+    'crispy_forms',
+
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -77,6 +81,10 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'builtins': [
+                'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
+            ],
         },
     },
 ]
@@ -94,6 +102,7 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
+CSRF_TRUSTED_ORIGINS = ["https://8000-white-wolverine-jm3bjl9t.ws-us21.gitpod.io"]
 # this is for cofirmation emails when a new account is created
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Code extracted from a completed project
