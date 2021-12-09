@@ -42,7 +42,7 @@
               <!-- django tags -->
               {% if request.user.is_authenticated %}
               {% if request.user.is_superuser %}
-              <a href="" class="">Product Management</a>
+              <a href="{% url 'all_services' %}" class="">All Services</a>
               {% endif %}
               <a href="{% url 'my_profile' %}" class="">My Profile</a>
               <a href="{% url 'account_logout' %}" class="">Logout</a>

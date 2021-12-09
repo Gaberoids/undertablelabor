@@ -30,8 +30,7 @@ class UserProfile(models.Model):
 
     # method to return the user name
     def __str__(self):
-        print("user ---------***********-----------------**************------------")
-        print(user)
+        # print(self.user) = test2 = user loggedin
         return self.user.username
 
 

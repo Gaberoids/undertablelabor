@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<!-- <link rel="stylesheet" href="{% static 'profiles/css/profile.css' %}"> -->
+{% endblock %}
+
+{% block page_header %}
+<!-- <div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div> -->
+{% endblock %}
+
+{% block content %}
+
+<h2 class="">Services and Workers</h2>
+
+<p>list the information about a worker here.</p> 
+<!-- for loop to display list of services and workers -->
+{% for service in services %}
+<p>AKA = {{ service.default_aka }}</p>
+<p>Service provider = {{ service.default_service_provider }}</p>
+<p>Town and City = {{ service.default_town_or_city }}</p>
+<p>County = {{ service.default_county }}</p>
+<p>Postcode = {{ service.default_postcode }}</p>
+<div style=" border-bottom: 4px dotted blue;"></div>
+<hr>
+{% endfor %}
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<!-- <script type="text/javascript" src="{% static 'profiles/js/countryfield.js' %}"></script> -->
+{% endblock %}

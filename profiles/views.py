@@ -33,3 +33,16 @@ def my_profile(request):
     }
     # after adding the on_profile_page, go to toast to finalize it. This is for a message to let people know that the profiles was successfully changed
     return render(request, template, context)
+
+
+def all_services(request):
+    services = UserProfile.objects.all()
+    print(" services ---------***********-----------------**************------------")
+    print(services)
+
+    template = 'profiles/services.html'
+    context = {
+        'services': services,
+    }
+
+    return render(request, template, context)
