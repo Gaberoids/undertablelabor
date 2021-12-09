@@ -42,9 +42,9 @@
               <!-- django tags -->
               {% if request.user.is_authenticated %}
               {% if request.user.is_superuser %}
-              <a href="{% url 'add_product' %}" class="">Product Management</a>
+              <a href="" class="">Product Management</a>
               {% endif %}
-              <a href="{% url 'profile' %}" class="">My Profile</a>
+              <a href="{% url 'my_profile' %}" class="">My Profile</a>
               <a href="{% url 'account_logout' %}" class="">Logout</a>
               <!-- url 'account_logout, _signup, _login comes from allauth' -->
               {% else %}
@@ -53,6 +53,7 @@
               {% endif %}
           </div>
         <p>Mail Box</p>
+        <div style="border-bottom: 5px solid red;"></div>
         
     </header>
 

@@ -16,6 +16,7 @@ class UserProfile(models.Model):
     # Shipping info attached to profile
     default_aka = models.CharField(max_length=80,
                                     null=True, blank=True)
+    # default_email_contact = 
     default_service_provider = models.BooleanField(default=False, 
                                                     null=True, blank=True)
     default_town_or_city = models.CharField(max_length=50,
@@ -29,6 +30,8 @@ class UserProfile(models.Model):
 
     # method to return the user name
     def __str__(self):
+        print("user ---------***********-----------------**************------------")
+        print(user)
         return self.user.username
 
 
