@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<!-- <link rel="stylesheet" href="{% static 'profiles/css/profile.css' %}"> -->
+{% endblock %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col">header</div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+    <h2 class="logo-font mb-4">Service Business Card Contact Page</h2>
+    <!-- { service provider name  }} -->
+    <p>Crispy Form section to send message</p>
+    <form class="" action="" method="POST" id="">
+        <!-- % csrf_token %}
+        { form|crispy }} -->
+        <button class="">Use this form with crispy to send a message</button>
+    </form>
+    <div style="border-bottom: 4px dotted blue;"> end of business card and message <form action=""></div>
+
+    <!-- generate a row for each message in the history -->
+    <h2>Message history to this professional</h2>
+    <!-- {% for message in contact_services %}
+        <p>Message History</p>
+        <p>Enter a list of messages in this part</p>
+    {% endfor %} -->
+                
+
+    {% endblock %}
+
+    {% block postloadjs %}
+    {{ block.super }}
+    <!-- <script type="text/javascript" src="{% static 'profiles/js/countryfield.js' %}"></script> -->
+    {% endblock %}
