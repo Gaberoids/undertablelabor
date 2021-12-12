@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
     'django.contrib.sites',  # call URLS when connecting via social media
     # account. good to track users activity in the website for marketing
     # statistics purposes

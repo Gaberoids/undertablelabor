@@ -20,7 +20,7 @@
 <p>list the information about a worker here.</p> 
 <!-- for loop to display list of services and workers -->
 {% for service in services %}
-<p>AKA = {{ service.default_aka }}</p>
+<a href="{% url 'contact_service' service.default_aka %}">AKA = {{ service.default_aka }}</a>
 <p>Service provider = {{ service.default_service_provider }}</p>
 <p>Town and City = {{ service.default_town_or_city }}</p>
 <p>County = {{ service.default_county }}</p>

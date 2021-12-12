@@ -15,18 +15,26 @@
 
 {% block content %}
     <h2 class="logo-font mb-4">Service Business Card Contact Page</h2>
-    <!-- { service provider name  }} -->
+    <p>AKA = {{ service.default_aka }}</p>
+    <p>Service provider = {{ service.default_service_provider }}</p>
+    <p>Town and City = {{ service.default_town_or_city }}</p>
+    <p>County = {{ service.default_county }}</p>
+    <p>Postcode = {{ service.default_postcode }}</p>
+    <div style="border-bottom: 4px dotted blue;"></div>
+
+    <!-- button -->
+    <h3>Contact this service</h3>
     <p>Crispy Form section to send message</p>
     <form class="" action="" method="POST" id="">
         <!-- % csrf_token %}
         { form|crispy }} -->
         <button class="">Use this form with crispy to send a message</button>
     </form>
-    <div style="border-bottom: 4px dotted blue;"> end of business card and message <form action=""></div>
+    <div style="border-bottom: 4px dotted blue;"> </div>
 
     <!-- generate a row for each message in the history -->
-    <h2>Message history to this professional</h2>
-    <!-- {% for message in contact_services %}
+    <h3>Message history/ you have no message history with this service</h3>
+        <!-- {% for message in contact_services %}
         <p>Message History</p>
         <p>Enter a list of messages in this part</p>
     {% endfor %} -->

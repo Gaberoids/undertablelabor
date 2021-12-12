@@ -11,7 +11,18 @@ from .forms import UserMyProfileForm
 def my_profile(request):
     """ Display the user's profile. """
     profile = get_object_or_404(UserProfile, user=request.user)
+    print("profile under my_profile ---------***********-----------------**************------------")
+    print(profile)
     # profile=admin1 = user loggedin
+    # type= class = <class 'profiles.models.UserProfile'>
+    # class_profile = UserProfile("test1")
+    # print("class_profile ---------***********-----------------**************------------")
+    # print(class_profile)
+    # profile_test1 = UserProfile("default_aka", "test1")
+    # print(profile_test1)
+    # attributes_of_profile = [item for item in accounts if item.get('id')==10][]
+    # print("profile_test1 ---------***********-----------------**************------------")
+    # print(profile_test1)
 
     if request.method == 'POST':
         form = UserMyProfileForm(request.POST, instance=profile)
@@ -22,7 +33,7 @@ def my_profile(request):
             messages.error(request,
                            ('Update failed. Please ensure '
                             'the form is valid.'))
-# what the heck the next two lines are doing???
+
     form = UserMyProfileForm(instance=profile)
     # orders = profile.orders.all()
     template = 'profiles/profile.html'
