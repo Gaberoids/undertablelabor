@@ -35,21 +35,20 @@
     <header class="">
         <!-- navbar -->
         <p>UnderTableServices</p>
-              <a href="{% url 'all_services' %}" class="">All Services</a>
-        <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
-        <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+        <a href="{% url 'all_services' %}" class="">All Services</a>
           <div>
               <!-- django tags -->
               {% if request.user.is_authenticated %}
-              {% if request.user.is_superuser %}
-              <a href="{% url 'all_services' %}" class="">All Services</a>
-              {% endif %}
-              <a href="{% url 'my_profile' %}" class="">My Profile</a>
-              <a href="{% url 'account_logout' %}" class="">Logout</a>
-              <!-- url 'account_logout, _signup, _login comes from allauth' -->
-              {% else %}
-              <a href="{% url 'account_signup' %}" class="">Register</a>
-              <a href="{% url 'account_login' %}" class="">Login</a>
+                <a href="{% url 'my_profile' %}" class="">My Profile</a>
+                <a href="{% url 'account_logout' %}" class="">Logout</a>
+                {% if request.user.is_superuser %}
+                    <a href="{% url 'admin' %}" class="">Administration</a>
+                {% endif %}
+
+                <!-- url 'account_logout, _signup, _login comes from allauth' -->
+            {% else %}
+                <a href="{% url 'account_signup' %}" class="">Register</a>
+                <a href="{% url 'account_login' %}" class="">Login</a>
               {% endif %}
           </div>
         <p>Mail Box</p>

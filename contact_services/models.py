@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from profiles.models import UserProfile
 
 # from django_countries.fields import CountryField
 
@@ -9,7 +10,7 @@ class ContactMessage(models.Model):
     A model to store messages sent
     from user to service provider
     """
-    m_id = models.CharField(max_length=32, null=False, editable=False)
+    # m_id = models.CharField(max_length=32, null=False, editable=False)
 
     m_title = models.CharField(max_length=80,
                                     null=True, blank=True)
@@ -21,19 +22,22 @@ class ContactMessage(models.Model):
                                                     null=True, blank=True)
     m_created_date = models.DateTimeField(auto_now_add=True)
 
-    # m_sender =  models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
-    #                                  null=True, blank=True, related_name='username')
+    m_sender =  models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
+                                     null=True, blank=True, related_name='m_sender_username')
 
-    # m_receiver = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
-    #                                  null=True, blank=True, related_name='username')
+    m_receiver = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
+                                     null=True, blank=True, related_name='m_receiver_username')
 
+    # def _generate_m_id(self):
+    #     """
+    #     Generate a random, unique order number using UUID
+    #     """
+    #     return uuid.uuid4().hex.upper()
 
     # method to return the user name
-    def __str__(self):
-        print("self from contactmessage ---------***********-----------------**************------------")
-        print(self)
+    def __int__(self):
         # print(self) = test2 = user loggedin
-        return self.m_title
+        return id
 
 # Create user or save update user information
 # @receiver(post_save, sender=User)

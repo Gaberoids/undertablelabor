@@ -33,12 +33,31 @@ def my_profile(request):
             messages.error(request,
                            ('Update failed. Please ensure '
                             'the form is valid.'))
+    else:
+        # prepopulating the user field on the form to have the user authenticated
+        if request.user.is_authenticated:
+            print("user authenticated---------***********-----------------**************------------")
+            try:
+                print("inside of try---------***********-----------------**************------------")
+                profile = UserProfile.objects.get(user=request.user)
+                my_profile_form = UserMyProfileForm(initial={
+                    'default_user': profile.user,
+                    'default_aka': profile.user,
+                    'email': profile.user.email,
+                })
+                print("print form inside the try---------***********-----------------**************------------")
+                print(my_profile_form)
+            except UserProfile.DoesNotExist:
+                print("inside of try except---------***********-----------------**************------------")
+                order_form = OrderForm()
+        else:
+            print("user not authenticated---------***********-----------------**************------------")
 
     form = UserMyProfileForm(instance=profile)
     # orders = profile.orders.all()
     template = 'profiles/profile.html'
     context = {
-        'form': form,
+        'my_profile_form': my_profile_form,
         # 'orders': orders,
         'on_profile_page': True
     }
