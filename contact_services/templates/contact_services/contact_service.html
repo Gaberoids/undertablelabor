@@ -34,10 +34,15 @@
 
     <!-- generate a row for each message in the history -->
     <h3>Message history/ you have no message history with this service</h3>
-        <!-- {% for message in contact_services %}
-        <p>Message History</p>
-        <p>Enter a list of messages in this part</p>
-    {% endfor %} -->
+        {% for message in all_messages %}
+        <p>{{message.m_title}}</p>
+        <p>{{message.m_body}}</p>
+        <p>{{message.m_share_email_box}}</p>
+        <p>{{message.m_created_date}}</p>
+        <p>{{message.m_sender}}</p>
+        <p>{{message.m_receiver}}</p>
+        <div style="border-bottom: 2px solid orange;"></div>
+    {% endfor %}
                 
 
     {% endblock %}

@@ -42,7 +42,7 @@
                 <a href="{% url 'my_profile' %}" class="">My Profile</a>
                 <a href="{% url 'account_logout' %}" class="">Logout</a>
                 {% if request.user.is_superuser %}
-                    <a href="{% url 'admin' %}" class="">Administration</a>
+                    <a href="" class="">Administration</a>
                 {% endif %}
 
                 <!-- url 'account_logout, _signup, _login comes from allauth' -->

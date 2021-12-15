@@ -41,7 +41,6 @@ def my_profile(request):
                 print("inside of try---------***********-----------------**************------------")
                 profile = UserProfile.objects.get(user=request.user)
                 my_profile_form = UserMyProfileForm(initial={
-                    'default_user': profile.user,
                     'default_aka': profile.user,
                     'email': profile.user.email,
                 })

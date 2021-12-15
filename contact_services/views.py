@@ -22,11 +22,11 @@ def contact_service(request, username):
         if form.is_valid():
             form.save()
             print("new_message from view contact_service ---------***********-----------------**************------------")
-            messages.success(request, 'Message updated successfully')
+            messages.success(request, 'Message created successfully')
         else:
             print("above error message form is not valid ---------***********-----------------**************------------")
             messages.error(request,
-                           ('Update failed. Please ensure '
+                           ('Message failed. Please ensure '
                             'the form is valid.'))
 # what the heck the next two lines are doing???
     print("before calling form on view---------***********-----------------**************------------")
@@ -36,49 +36,49 @@ def contact_service(request, username):
 
     # messages_to_service = profile.orders.all()
     service = profile
+    all_messages = ContactMessage.objects.all()
     template = 'contact_services/contact_service.html'
     context = {
         'service': service,
         'form': form,
-        # 'orders': orders,
+        'all_messages': all_messages,
         # 'on_profile_page': True
     }
+    # ???after adding the on_profile_page, go to toast to finalize it. This is for a message to let people know that the profiles was successfully changed
+    print("request---------***********-----------------**************------------")
+    print(request)
+    print("template---------***********-----------------**************------------")
+    print(template)
+    print(" context---------***********-----------------**************------------")
+    print(context)
+    print("ContactMessage.objects.all---------***********-----------------**************------------")
+    
+    classcm = ContactMessage.objects.all()
+    print(classcm)
+    print("dir()---------***********-----------------**************------------")
+    classcm1 = dir()
+    print(classcm1)
+    print("dir(classcm)---------***********-----------------**************------------")
+    classcm = dir(classcm)
+    print(classcm)
+    print("list __dir__---------***********-----------------**************------------")  
+    listdir = classcm.__dir__
+    print(listdir)
 
+    # print("vars()---------***********-----------------**************------------")
+    # classcm = vars(classcm)
+    # print(classcm)
+    
+    print("ContactMessage.objects.filter---------***********-----------------**************------------")
+    classobjid = ContactMessage.objects.filter(id=10)
+    print(classobjid)
+    
+    print("list all---------***********-----------------**************------------")
+    listall = list(classcm)
+    print(listall)
+    
+    # print("list pp.pprint(dict(os.environ))---------***********-----------------**************------------")
+    # listdir = pp.pprint(dict(classcm))
+    # print(listdir)
     return render(request, template, context)
 
-# ???after adding the on_profile_page, go to toast to finalize it. This is for a message to let people know that the profiles was successfully changed
-    # print("request---------***********-----------------**************------------")
-    # print(request)
-    # print("template---------***********-----------------**************------------")
-    # print(template)
-    # print(" context---------***********-----------------**************------------")
-    # print(context)
-    # print("ContactMessage.objects.all---------***********-----------------**************------------")
-    
-    # classcm = ContactMessage.objects.all()
-    # print(classcm)
-    # print("dir()---------***********-----------------**************------------")
-    # classcm1 = dir()
-    # print(classcm1)
-    # print("dir(classcm)---------***********-----------------**************------------")
-    # classcm = dir(classcm)
-    # print(classcm)
-    # print("list __dir__---------***********-----------------**************------------")  
-    # listdir = classcm.__dir__
-    # print(listdir)
-
-    # # print("vars()---------***********-----------------**************------------")
-    # # classcm = vars(classcm)
-    # # print(classcm)
-    
-    # print("ContactMessage.objects.filter---------***********-----------------**************------------")
-    # classobjid = ContactMessage.objects.filter(id=10)
-    # print(classobjid)
-    
-    # print("list all---------***********-----------------**************------------")
-    # listall = list(classcm)
-    # print(listall)
-    
-    # # print("list pp.pprint(dict(os.environ))---------***********-----------------**************------------")
-    # # listdir = pp.pprint(dict(classcm))
-    # # print(listdir)
