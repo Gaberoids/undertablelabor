@@ -41,7 +41,10 @@
         <p>{{message.m_created_date}}</p>
         <p>{{message.m_sender}}</p>
         <p>{{message.m_receiver}}</p>
-        <div style="border-bottom: 2px solid orange;"></div>
+        <a type="button"
+            href="{% url 'delete_service_message' message_id=message.id username=service.default_aka %}">Remove
+            message!</a>
+<div style="border-bottom: 2px solid rgb(143, 114, 60);"></div>
     {% endfor %}
                 
 
