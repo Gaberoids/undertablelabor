@@ -12,6 +12,7 @@ def contact_service(request, username):
     profile = get_object_or_404(UserProfile, default_aka=username)
     # profile=admin1 = user loggedin
     # type= class = <class 'profiles.models.UserProfile'>
+    print(profile)
 
     if request.method == 'POST':
         form = MessageToServiceForm(request.POST)
@@ -33,10 +34,13 @@ def contact_service(request, username):
             
             print("inside of try is auth---------***********-----------------**************------------")
             m_profile = UserProfile.objects.get(user=request.user)
-            print(m_profile.user.email)
+            # print(m_profile.user.email)
             print(m_profile.user)
+            print(m_profile)
+            print(m_profile.user.username)
             m_message_form = MessageToServiceForm(initial={
-                'm_sender': m_profile.user,
+                'm_sender': m_profile,
+                'm_receiver': profile,
                 'm_sender_email': m_profile.user.email,
             })
             print("print form inside the try after form1---------***********-----------------**************------------")
@@ -64,7 +68,7 @@ def contact_service(request, username):
     template = 'contact_services/contact_service.html'
     context = {
         'service': service,
-        'form': form,
+        'form': m_message_form,
         'all_messages': all_messages,
         # 'on_profile_page': True
     }
