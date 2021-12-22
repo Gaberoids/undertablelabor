@@ -11,6 +11,7 @@ class ContactMessageAdmin(admin.ModelAdmin):
         'm_body',
         'm_share_email_box',
         'm_created_date',
+        'm_sender',
         'm_receiver',
     )
 

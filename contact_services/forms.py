@@ -25,10 +25,10 @@ class MessageToServiceForm(forms.ModelForm):
             # 'default_contact_email': 'E-mail for contact,'
             'm_title': "Message Title",
             'm_body': "Message Body",
-            # 'm_sender_email': 'Email for reply',
+            'm_sender_email': 'Email for reply',
             'm_share_email_box': 'Allow service provider to view my email for contact',
-            # 'm_receiver': 'Send to:',  # needs to add to model
-            # 'm_sender': 'From',  # needs to add to model
+            'm_receiver': 'Send to:',  # needs to add to model
+            'm_sender': 'From',  # needs to add to model
         }  # default_ makes match the model
         print("below place holders ---------***********-----------------**************------------")
 

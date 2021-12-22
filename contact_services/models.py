@@ -10,19 +10,17 @@ class ContactMessage(models.Model):
     A model to store messages sent
     from user to service provider
     """
-    # m_id = models.CharField(max_length=32, null=False, editable=False)
-
     m_title = models.CharField(max_length=80,
                                     null=True, blank=True)
     m_body = models.CharField(max_length=50,
                                             null=True, blank=True)
-    # m_sender_email = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
-    #                                  null=True, blank=True, related_name='user')
+    m_sender_email = models.EmailField(max_length=254, null=False, blank=True)
+
     m_share_email_box = models.BooleanField(default=False, 
                                                     null=True, blank=True)
     m_created_date = models.DateTimeField(auto_now_add=True)
 
-    m_sender =  models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
+    m_sender = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
                                      null=True, blank=True, related_name='m_sender_username')
 
     m_receiver = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
