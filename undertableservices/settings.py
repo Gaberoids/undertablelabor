@@ -104,7 +104,7 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-CSRF_TRUSTED_ORIGINS = ["https://8000-white-wolverine-jm3bjl9t.ws-us23.gitpod.io"]
+CSRF_TRUSTED_ORIGINS = ["https://8000-white-wolverine-jm3bjl9t.ws-us25.gitpod.io"]
 # this is for cofirmation emails when a new account is created
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Code extracted from a completed project

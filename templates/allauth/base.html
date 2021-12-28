@@ -39,6 +39,7 @@
           <div>
               <!-- django tags -->
               {% if request.user.is_authenticated %}
+                <p>Welcome {{ request.user }}</p>
                 <a href="{% url 'my_profile' %}" class="">My Profile</a>
                 <a href="{% url 'account_logout' %}" class="">Logout</a>
                 {% if request.user.is_superuser %}

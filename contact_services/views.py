@@ -3,12 +3,11 @@ from django.contrib import messages
 from profiles.models import UserProfile
 from .models import ContactMessage
 from .forms import MessageToServiceForm
-import gc
-# import pprint as pp
 
 
 def contact_service(request, username):
     """ Display the user's profile. """
+    # profile = reciever
     profile = get_object_or_404(UserProfile, default_aka=username)
     # profile=admin1 = user loggedin
     # type= class = <class 'profiles.models.UserProfile'>
@@ -31,8 +30,9 @@ def contact_service(request, username):
     if request.user.is_authenticated:
         print("user authenticated---------***********-----------------**************------------")
         try:
-            
+            # form authofill
             print("inside of try is auth---------***********-----------------**************------------")
+            # m_profile = sender
             m_profile = UserProfile.objects.get(user=request.user)
             # print(m_profile.user.email)
             print(m_profile.user)
@@ -45,6 +45,10 @@ def contact_service(request, username):
             })
             print("print form inside the try after form1---------***********-----------------**************------------")
             print(m_message_form)
+
+            # filter all messages based on the user logged in and service provider profile
+            # all_messages_per_profile = all_messages.objects.filter(m_receiver=)
+
         except UserProfile.DoesNotExist:
             print("inside of try except---------***********-----------------**************------------")
             order_form = OrderForm()
@@ -52,9 +56,10 @@ def contact_service(request, username):
         print("user not authenticated---------***********-----------------**************------------")
         try:
             print("inside of try isnotauth---------***********-----------------**************------------")
-            m_sender = "Guest"
+            m_sender_guest = "Guest"
             m_message_form = MessageToServiceForm(initial={
-                'default_aka': m_sender,
+                'm_sender': m_sender_guest,
+                'm_receiver': profile,
             })
             print("print form inside the try---------***********-----------------**************------------")
             print(m_message_form)
