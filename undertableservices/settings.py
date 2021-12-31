@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 from pathlib import Path
+import dj_database_url
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +28,8 @@ SECRET_KEY = 'django-insecure-3=_-1e-k1sbnndsi4je(01ever$(_b3$!-6p=i_$%+s$3-o1lb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# below I add local host to allow gitpod to work simultaneously with the deployed app
+ALLOWED_HOSTS = ['undertablelabor.herokuapp.com/', 'localhost']
 
 
 # Application definition
