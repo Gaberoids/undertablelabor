@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-3=_-1e-k1sbnndsi4je(01ever$(_b3$!-6p=i_$%+s$3-o1lb
 DEBUG = True
 
 # below I add local host to allow gitpod to work simultaneously with the deployed app
-ALLOWED_HOSTS = ['undertablelabor.herokuapp.com/', 'localhost']
+ALLOWED_HOSTS = ['undertablelabor.herokuapp.com', 'localhost']
 
 
 # Application definition
