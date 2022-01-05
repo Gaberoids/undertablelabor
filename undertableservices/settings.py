@@ -149,6 +149,7 @@ else:
         }
     }
 
+
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -164,6 +165,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+DATABASES = {'default': dj_database_url.parse('postgres://nwqpontrvtgjjz:e1ac892909dd789e2e21348d66ea0df5e0b938b26c17e7338b03ce31668fbc23@ec2-18-214-140-149.compute-1.amazonaws.com:5432/djn8dmvc6s4g8')}
 
 
 # Internationalization
