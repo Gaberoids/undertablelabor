@@ -109,7 +109,7 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-CSRF_TRUSTED_ORIGINS = ["https://8000-white-wolverine-jm3bjl9t.ws-us25.gitpod.io"]
+CSRF_TRUSTED_ORIGINS = ["https://8000-lavender-parrot-jxyb93hh.ws-us25.gitpod.io"]
 # this is for cofirmation emails when a new account is created
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Code extracted from a completed project
@@ -188,6 +188,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -211,11 +212,11 @@ if 'USE_AWS' in os.environ:
     AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 
     # Static and media files. this  goes with the code on custom_storage.py
-    # STATICFILES_STORAGE = 'custom_storages.StaticStorage'
-    # STATICFILES_LOCATION = 'static'
-    # DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
-    # MEDIAFILES_LOCATION = 'media'
+    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+    STATICFILES_LOCATION = 'static'
+    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+    MEDIAFILES_LOCATION = 'media'
 
     # Override static and media URLs in production.
-    # STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
-    # MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
