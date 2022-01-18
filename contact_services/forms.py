@@ -31,4 +31,3 @@ class MessageToServiceForm(forms.ModelForm):
             'm_sender': 'From',  # needs to add to model
         }  # default_ makes match the model
         print("below place holders ---------***********-----------------**************------------")
-

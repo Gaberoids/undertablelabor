@@ -7,11 +7,16 @@ from .forms import MessageToServiceForm
 
 def contact_service(request, username):
     """ Display the user's profile. """
-    # profile = reciever
-    profile = get_object_or_404(UserProfile, default_aka=username)
-    # profile=admin1 = user loggedin
+
+    # profile = receiever
+    profile = get_object_or_404(UserProfile, id=username)
+    # profile=admin1 = user selected from list of services
     # type= class = <class 'profiles.models.UserProfile'>
+    print("profile ---------***********-----------------**************------------")
     print(profile)
+
+    print("dir(profile) ---------***********-----------------**************------------")
+    print(dir(profile))
 
     if request.method == 'POST':
         form = MessageToServiceForm(request.POST)
@@ -35,8 +40,8 @@ def contact_service(request, username):
             # m_profile = sender
             m_profile = UserProfile.objects.get(user=request.user)
             # print(m_profile.user.email)
-            print(m_profile.user)
-            print(m_profile)
+            print("type(m_profile)---------***********-----------------**************------------")
+            print(type(m_profile))
             print(m_profile.user.username)
             m_message_form = MessageToServiceForm(initial={
                 'm_sender': m_profile,
@@ -56,7 +61,12 @@ def contact_service(request, username):
         print("user not authenticated---------***********-----------------**************------------")
         try:
             print("inside of try isnotauth---------***********-----------------**************------------")
-            m_sender_guest = "Guest"
+            # Guest user id = 3
+            m_sender_guest = UserProfile.objects.get(id=3)
+            print("m_sender_guest ---------***********-----------------**************------------")
+            print(type(m_sender_guest))
+            print(m_sender_guest)
+            
             m_message_form = MessageToServiceForm(initial={
                 'm_sender': m_sender_guest,
                 'm_receiver': profile,
@@ -66,10 +76,15 @@ def contact_service(request, username):
         except UserProfile.DoesNotExist:
             print("inside of try except---------***********-----------------**************------------")
             order_form = OrderForm()
+    
+    
 
-    # messages_to_service = profile.orders.all()
-    service = profile
+    # messages below place holderstween logged in user and service rpovider
     all_messages = ContactMessage.objects.all()
+    for x in all_messages:
+        print(x.m_title, x.m_body, x.m_sender, x.m_receiver)
+ 
+    service = profile
     template = 'contact_services/contact_service.html'
     context = {
         'service': service,

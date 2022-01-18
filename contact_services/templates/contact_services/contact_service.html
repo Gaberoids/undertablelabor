@@ -36,7 +36,7 @@
     <!-- generate a row for each message in the history -->
     <h3>Message history/ you have no message history with this service</h3>
         {% for message in all_messages %}
-            {% if message == message.default_aka %}
+            {% if message %}
                 <p>Message sender: {{ message.m_sender }}</p>
                 <p>User logged in: {{ username }} or {{ service.default_aka }}</p>
                 <p>User request.user {{ request.user }}</p>
@@ -44,7 +44,11 @@
                 <p>{{message.m_body}}</p>
                 <p>{{message.m_share_email_box}}</p>
                 <p>{{message.m_created_date}}</p>
-                <p>{{message.m_sender}}</p>
+                {% if not message.m_sender %}
+                    <p>{{message.m_sender}}</p>
+                {% else %}
+                    <p>{{m_sender}}</p>
+                {% endif %}
                 <p>{{message.m_receiver}}</p>
                 <a type="button"
                     href="{% url 'delete_service_message' message_id=message.id username=service.default_aka %}">Remove
