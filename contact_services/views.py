@@ -18,19 +18,6 @@ def contact_service(request, username):
     print("dir(profile) ---------***********-----------------**************------------")
     print(dir(profile))
 
-    if request.method == 'POST':
-        form = MessageToServiceForm(request.POST)
-
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Message created successfully')
-        else:
-            messages.error(request,
-                           ('Message failed. Please ensure '
-                            'the form is valid.'))
-# what the heck the next two lines are doing???
-    form = MessageToServiceForm()
-
     # prepopulate m_sender and m_receiver
     if request.user.is_authenticated:
         print("user authenticated---------***********-----------------**************------------")
@@ -81,6 +68,7 @@ def contact_service(request, username):
 
     # messages below place holderstween logged in user and service rpovider
     all_messages = ContactMessage.objects.all()
+    print(" for loop all messages to get the table value ---------***********-----------------**************------------")
     for x in all_messages:
         print(x.m_title, x.m_body, x.m_sender, x.m_receiver)
  
