@@ -33,32 +33,33 @@
     
     <!-- generate a row for each message in the history -->
     <h3>Message history/ you have no message history with this service</h3>
-        {% for message in all_messages %}
-            {% if message %}
-                <p>Message sender: {{ message.m_sender }}</p>
-                <p>User logged in: username {{ username }} or AKA: {{ service.default_aka }}</p>
-                <p>User request.user {{ request.user }}</p>
-                <p>{{message.m_title}}</p>
-                <p>{{message.m_body}}</p>
-                <p>{{message.m_share_email_box}}</p>
-                <p>{{message.m_created_date}}</p>
-                {% if not message.m_sender %}
-                    <p>{{message.m_sender}}</p>
+        {% if request.user.is_authenticated %}
+            {% for message in all_messages %}
+                {% if message %}
+                    <p>Message sender: {{ message.m_sender }}</p>
+                    <p>User logged in: username {{ username }} or AKA: {{ service.default_aka }}</p>
+                    <p>User request.user {{ request.user }}</p>
+                    <p>{{message.m_title}}</p>
+                    <p>{{message.m_body}}</p>
+                    <p>{{message.m_share_email_box}}</p>
+                    <p>{{message.m_created_date}}</p>
+                    {% if not message.m_sender %}
+                        <p>{{message.m_sender}}</p>
+                    {% else %}
+                        <p>{{m_sender}}</p>
+                    {% endif %}
+                    <p>{{message.m_receiver}}</p>
+                    <a type="button"
+                        href="{% url 'delete_service_message' message_id=message.id username=service.id %}">Remove
+                        message!</a>
+                    <div style="border-bottom: 2px solid rgb(143, 114, 60);"></div>
                 {% else %}
-                    <p>{{m_sender}}</p>
+                    <div style="border-bottom: 2px solid rgb(143, 114, 60);">You have no message history with this user</div>
                 {% endif %}
-                <p>{{message.m_receiver}}</p>
-                <a type="button"
-                    href="{% url 'delete_service_message' message_id=message.id username=service.id %}">Remove
-                    message!</a>
-                <div style="border-bottom: 2px solid rgb(143, 114, 60);"></div>
-            {% else %}
-
-                <div style="border-bottom: 2px solid rgb(143, 114, 60);">You are not logged in or you dont have a message history with this service provider</div>
-            {% endif %}
-        {% endfor %}
-                
-
+            {% endfor %}
+        {% else %}
+            <p>If you have messages associated with this service provider, please login to see the message history.</p>                
+        {% endif%}
     {% endblock %}
 
     {% block postloadjs %}
