@@ -56,7 +56,13 @@
         <div style="border-bottom: 5px solid red;"></div>
         
     </header>
-
+    {% if messages %}
+        {% for message in messages %}
+            <div style="background-color: aqua;">{{ message }}</div>
+            
+        {% endfor%}
+        
+    {% endif %}
     {% block page_header %}
     {% endblock %}
 

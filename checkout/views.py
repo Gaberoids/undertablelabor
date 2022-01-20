@@ -11,7 +11,11 @@ def checkout(request):
     if request.method == 'POST':
         form = MessageToServiceForm(request.POST)
         if form.is_valid():
-            form.save()
+            created_message = form.save()
+            # 
+            created_message_id = created_message.id
+            # above integer id
+            # created_message_checkout = ContactMessage.objects.get(pk=created_message_id)
             messages.success(request, 'Message created successfully')
         else:
             messages.error(request,
