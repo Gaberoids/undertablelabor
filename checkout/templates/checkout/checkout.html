@@ -11,24 +11,21 @@
     <div class="row">
         <div class="col-6" style="border-bottom: 4px dotted blue;">
             <h5>Message Detailed</h5>
-            {% for message in all_messages %}
-                {% if message %}
-                    <p>Message sender: {{ message.m_sender }}</p>
-                    <p>User logged in: {{ username }} or {{ service.default_aka }}</p>
-                    <p>User request.user {{ request.user }}</p>
-                    <p>{{message.m_title}}</p>
-                    <p>{{message.m_body}}</p>
-                    <p>{{message.m_share_email_box}}</p>
-                    <p>{{message.m_created_date}}</p>
-                    <p>{{message.m_sender}}</p>
-                    <p>{{message.m_receiver}}</p>
+            
+                    <p>Message sender: {{ message_to_checkout.m_sender }}</p>
+                    <p>User logged in: {{ message_to_checkout }} or {{ message_to_checkout.default_aka }}</p>
+                    <p>User request.user {{ message_to_checkout.user }}</p>
+                    <p>{{message_to_checkout.m_title}}</p>
+                    <p>{{message_to_checkout.m_body}}</p>
+                    <p>{{message_to_checkout.m_share_email_box}}</p>
+                    <p>{{message_to_checkout.m_created_date}}</p>
+                    <p>{{message_to_checkout.m_sender}}</p>
+                    <p>{{message_to_checkout.m_receiver}}</p>
                     <div style="border-bottom: 2px solid rgb(143, 114, 60);"></div>
-                {% else %}
+                
 
                     <div style="border-bottom: 2px solid rgb(143, 114, 60);">You are not logged in or you dont have a message
                         history with this service provider</div>
-                {% endif %}
-            {% endfor %}
 
         </div>
         <div class="col-6" style="border-bottom: 4px dotted blue;">
