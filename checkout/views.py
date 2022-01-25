@@ -25,12 +25,14 @@ def checkout(request):
                             'the form is valid.'))    
     
     all_messages = ContactMessage.objects.all()
-    print(" for loop all messages to get the table value ---------***********-----------------**************------------")
-    for x in all_messages:
-        print(x.m_title, x.m_body, x.m_sender, x.m_receiver)
+    # print(" for loop all messages to get the table value ---------***********-----------------**************------------")
+    # for x in all_messages:
+    #     print(x.m_title, x.m_body, x.m_sender, x.m_receiver)
     template = 'checkout/checkout.html'
     context = {
         'message_to_checkout': created_message_checkout,
         # 'on_profile_page': True
+        'stripe_public_key': 'pk_test_51JoyKmIC9OHyTnCzT2FCFBpAtTY3Rzd8N6zgOKEBEF2sU9c4I8zdoeBB8u2eGmvb0I8B5gQ5SbLgtVlQ5KUcHgLo0064z7vemP',
+        'stripe_client_key': 'client key test',
     }
     return render(request, template, context)
