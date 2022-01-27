@@ -21,7 +21,7 @@ console.log(card.mount('#card-element'))
 
 card.addEventListener('change', function (event) {
     var errorDiv = document.getElementById('card-errors');
-    // event.error = {code: '_', type: '_', message: '_'}
+    // event = {elementType: 'card', error: undefined, value: {…}, empty: false, complete: false, …}
     if (event.error) {
         // event.error = {code: 'invalid_number', type: 'validation_error', message: 'Your card number is invalid.'}
         var html = `
@@ -32,9 +32,14 @@ card.addEventListener('change', function (event) {
         `;
         $(errorDiv).html(html)
 
-        console.log(event.error)
-
     } else {
         errorDiv.textContent = '';
     }
 });
+
+// process:
+// when hit the checkout page stripe create a payment intent
+// Stripe returns client_secret, which is return to the template
+// Use client_secret in the template to call confirmCardpayment() and verify the card number
+
+// handle form submit

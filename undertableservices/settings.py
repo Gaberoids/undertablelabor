@@ -197,6 +197,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
+# stripe variables
+STRIPE_CURRENCY = 'usd'
+STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
+
 if 'USE_AWS' in os.environ:
 
     # Cache control. this tells the browser to store the cache for a long time. For performance purposes
