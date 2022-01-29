@@ -41,6 +41,7 @@ card.mount('#card-element');
 // console shows 'undefined' for console.log(card.mount('#card-element')
 console.log(card.mount('#card-element'));
 
+// this listener function is to add error message when card number is invalid
 card.addEventListener('change', function (event) {
     var errorDiv = document.getElementById('card-errors');
     // event = {elementType: 'card', error: undefined, value: {…}, empty: false, complete: false, …}
@@ -66,6 +67,7 @@ card.addEventListener('change', function (event) {
 
 // handle form submit
 // the listener will preventDefault action
+// this will make sure the card number will go to stripe securely
 FormData.addEventListener('submit', function (ev) {
     ev.preventDefault();
     // below is meant to prevent multiple submitions    
@@ -98,5 +100,3 @@ FormData.addEventListener('submit', function (ev) {
         }
     })
 })
-
-console.log(card.mount('#card-element', { style: style }));
