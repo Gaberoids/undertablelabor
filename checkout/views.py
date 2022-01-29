@@ -18,36 +18,35 @@ def checkout(request):
     stripe_total_payment = 100
     # in stripe, 100 = $1.00
     stripe.api_key = stripe_secret_key
-    print("stripe_api_key = ---------***********-----------------**************------------")   
-    print(stripe.api_key)
-    print(stripe_public_key)
-    print(stripe_secret_key)
+    
+    # creating intent. it looks like a huge dictionary
     intent = stripe.PaymentIntent.create(
         amount=stripe_total_payment,
         currency=settings.STRIPE_CURRENCY,
     )
-    print("intent ---------***********-----------------**************------------")
-    print(intent)
+    #  intent is a huge dictionary with a bunch of keys and values that comes from stripe. Client secret used below is one of the keys=value
+    # intent type = <class 'stripe.api_resources.payment_intent.PaymentIntent'>
 
     if request.method == 'POST':
+        # use below line when you want to get form inputs from a .html form
         form = MessageToServiceForm(request.POST)
         if form.is_valid():
+            print("form inside form is valid ---------***********-----------------**************------------")
+            print(form)
             created_message = form.save()
-            # 
             created_message_id = created_message.id
             # above integer id
             created_message_checkout = ContactMessage.objects.get(pk=created_message_id)
-            print("created_message_checkout ---------***********-----------------**************------------")
-            print(created_message_checkout)
+            # created_message_checkout = ContactMessage object (90)
             messages.success(request, 'Message created successfully')
         else:
             messages.error(request,
                            ('Message failed. Please ensure '
-                            'the form is valid.'))    
-    
+                            'the form is valid.'))
+
     if not stripe_public_key:
         messages.warning(request, 'Stripe public key is missing. Did you forget to set it in your environment?')
-    
+
     all_messages = ContactMessage.objects.all()
     # print(" for loop all messages to get the table value ---------***********-----------------**************------------")
     # for x in all_messages:
@@ -57,6 +56,6 @@ def checkout(request):
         'message_to_checkout': created_message_checkout,
         # 'on_profile_page': True
         'stripe_public_key': stripe_public_key,
-        'stripe_client_key': intent.client_secret,
+        'client_secret': intent.client_secret,
     }
     return render(request, template, context)
