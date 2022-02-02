@@ -64,9 +64,8 @@ def my_profile(request):
 
 
 def all_services(request):
-    services = UserProfile.objects.all()
-    print(" services ---------***********-----------------**************------------")
-    print(services)
+    services = UserProfile.objects.filter(default_service_provider=True)
+    # <QuerySet [<UserProfile: admin1>, <UserProfile: Guest>, <UserProfile: user1>, <UserProfile: user4>]>    print(services)
 
     template = 'profiles/services.html'
     context = {

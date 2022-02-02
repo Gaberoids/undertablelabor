@@ -24,7 +24,6 @@ def contact_service(request, username):
         print("user authenticated---------***********-----------------**************------------")
         try:
             # form authofill
-            print("inside of try is auth---------***********-----------------**************------------")
             # user authenticated is m_profile
             m_profile = UserProfile.objects.get(user=request.user)
             # m_profile printed is <class 'profiles.models.UserProfile'>
