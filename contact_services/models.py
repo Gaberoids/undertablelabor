@@ -25,6 +25,9 @@ class ContactMessage(models.Model):
 
     m_receiver = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
                                      null=True, blank=True, related_name='m_receiver_username')
+    m_sent = models.BooleanField(default=False, 
+                                    null=True, blank=True)
+
 
     # def _generate_m_id(self):
     #     """

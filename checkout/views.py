@@ -50,9 +50,7 @@ def checkout(request):
         messages.warning(request, 'Stripe public key is missing. Did you forget to set it in your environment?')
 
     all_messages = ContactMessage.objects.all()
-    # print(" for loop all messages to get the table value ---------***********-----------------**************------------")
-    # for x in all_messages:
-    #     print(x.m_title, x.m_body, x.m_sender, x.m_receiver)
+
     template = 'checkout/checkout.html'
     context = {
         'message_to_checkout': created_message_checkout,
@@ -83,7 +81,20 @@ def checkoutPayment(request, message_to_checkout):
 
     if request.method == 'POST':
         paid_item = ContactMessage.objects.get(pk=message_to_checkout)
+        paid_item_title = paid_item.m_title
+        print("paid_item_title = ---------***********-----------------**************------------")   
+        print(paid_item_title)
+        print('paid_item_title end')
+
+        paid_item_receiver = paid_item.m_receiver
+        print("paid_item_receiver = ---------***********-----------------**************------------")   
+        print(paid_item_receiver)
+        print('paid_item_receiver end')
+
+
         messages.success(request,'Congrats, payment was successfully succeeded')
+        messages.success(request,f'Message "{paid_item_title}", was sent to "{paid_item_receiver}".')
+
 
     else:
         messages.error(request,
