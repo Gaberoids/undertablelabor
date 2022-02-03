@@ -23,9 +23,16 @@ def my_profile(request):
     # attributes_of_profile = [item for item in accounts if item.get('id')==10][]
     # print("profile_test1 ---------***********-----------------**************------------")
     # print(profile_test1)
+    my_profile_form = ''
 
     if request.method == 'POST':
+        print("request.POST = ---------***********-----------------**************------------")   
+        print(request.POST)
+        print('request.POST end')
         form = UserMyProfileForm(request.POST, instance=profile)
+        print("form insiderequest post from my_profileview = ---------***********-----------------**************------------")   
+        print(form)
+        print('form end')
         if form.is_valid():
             form.save()
             messages.success(request, 'Profile updated successfully')
@@ -38,7 +45,7 @@ def my_profile(request):
         if request.user.is_authenticated:
             print("user authenticated---------***********-----------------**************------------")
             try:
-                print("inside of try---------***********-----------------**************------------")
+                print("inside of try user is authenticated---------***********-----------------**************------------")
                 profile = UserProfile.objects.get(user=request.user)
                 my_profile_form = UserMyProfileForm(initial={
                     'default_aka': profile.user,

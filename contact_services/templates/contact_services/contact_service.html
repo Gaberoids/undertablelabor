@@ -32,8 +32,9 @@
     </form>
     
     <!-- generate a row for each message in the history -->
-    <h3>Message history/ you have no message history with this service</h3>
+ 
         {% if request.user.is_authenticated %}
+            <h3>MESSAGE HISTORY</h3>
             {% for message in all_messages %}
                 {% if message %}
                     <p>Message sender: {{ message.m_sender }}</p>
@@ -58,7 +59,7 @@
                 {% endif %}
             {% endfor %}
         {% else %}
-            <p>If you have messages associated with this service provider, please login to see the message history.</p>                
+            <!--  DO NOT SHOW ANY MESSAGE HISTORY IF USER IS NOT LOGGED IN -->
         {% endif%}
     {% endblock %}
 
