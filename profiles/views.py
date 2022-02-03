@@ -10,31 +10,18 @@ from .forms import UserMyProfileForm
 # Create your views here.
 def my_profile(request):
     """ Display the user's profile. """
+    # reuqest = <WSGIRequest: GET '/profile/'>
     profile = get_object_or_404(UserProfile, user=request.user)
-    print("profile under my_profile ---------***********-----------------**************------------")
-    print(profile)
     # profile=admin1 = user loggedin
     # type= class = <class 'profiles.models.UserProfile'>
-    # class_profile = UserProfile("test1")
-    # print("class_profile ---------***********-----------------**************------------")
-    # print(class_profile)
-    # profile_test1 = UserProfile("default_aka", "test1")
-    # print(profile_test1)
     # attributes_of_profile = [item for item in accounts if item.get('id')==10][]
-    # print("profile_test1 ---------***********-----------------**************------------")
-    # print(profile_test1)
     my_profile_form = ''
 
     if request.method == 'POST':
-        print("request.POST = ---------***********-----------------**************------------")   
-        print(request.POST)
-        print('request.POST end')
-        form = UserMyProfileForm(request.POST, instance=profile)
-        print("form insiderequest post from my_profileview = ---------***********-----------------**************------------")   
-        print(form)
-        print('form end')
-        if form.is_valid():
-            form.save()
+        # request.POST = <QueryDict: {'csrfmiddlewaretoken': ['kOsHMzYvgUgeOLyFPCGj0e0ZWhkbmbqgHBEgAMfMoooQWCYMvIXVNtezEv0YIxBe'], 'default_aka': ['serv1'], 'default_service_provider': ['true'], 'default_town_or_city': [''], 'default_county': [''], 'default_postcode': ['234523']}>
+        my_profile_form = UserMyProfileForm(request.POST, instance=profile)
+        if my_profile_form.is_valid():
+            my_profile_form.save()
             messages.success(request, 'Profile updated successfully')
         else:
             messages.error(request,
@@ -47,8 +34,13 @@ def my_profile(request):
             try:
                 print("inside of try user is authenticated---------***********-----------------**************------------")
                 profile = UserProfile.objects.get(user=request.user)
+                # profile has access to all fieldsrelated to a the user. Including the fileds from Contact_Message and UserProfile models because the key relationships between them
                 my_profile_form = UserMyProfileForm(initial={
                     'default_aka': profile.user,
+                    'default_service_provider': profile.default_service_provider,
+                    'default_postcode': profile.default_postcode,
+                    'default_town_or_city': profile.default_town_or_city,
+                    'default_county': profile.default_county
                 })
                 print("print form inside the try---------***********-----------------**************------------")
                 print(my_profile_form)
