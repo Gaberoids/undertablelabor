@@ -2,6 +2,7 @@ from django.shortcuts import render
 from contact_services.models import ContactMessage
 from contact_services.forms import MessageToServiceForm
 from django.contrib import messages
+from  .models import OrderedMessages
 
 # two next lines are for stripe
 from django.conf import settings
@@ -79,21 +80,23 @@ def checkoutPayment(request, message_to_checkout):
     #  intent is a huge dictionary with a bunch of keys and values that comes from stripe. Client secret used below is one of the keys=value
     # intent type = <class 'stripe.api_resources.payment_intent.PaymentIntent'>
 
+    # to submit orders
     if request.method == 'POST':
-        paid_item = ContactMessage.objects.get(pk=message_to_checkout)
-        paid_item_title = paid_item.m_title
-        print("paid_item_title = ---------***********-----------------**************------------")   
-        print(paid_item_title)
-        print('paid_item_title end')
+        ordered_message = ContactMessage.objects.get(pk=message_to_checkout)
+        ordered_message_title = ordered_message.m_title
+        print("ordered_message_title = ---------***********-----------------**************------------")   
+        print(ordered_message_title)
+        print('ordered_message_title end')
 
-        paid_item_receiver = paid_item.m_receiver
-        print("paid_item_receiver = ---------***********-----------------**************------------")   
-        print(paid_item_receiver)
-        print('paid_item_receiver end')
+        ordered_message_receiver = ordered_message.m_receiver
+        print("ordered_message_receiver = ---------***********-----------------**************------------")   
+        print(ordered_message_receiver)
+        print('ordered_message_receiver end')
+
 
 
         messages.success(request,'Congrats, payment was successfully succeeded')
-        messages.success(request,f'Message "{paid_item_title}", was sent to "{paid_item_receiver}".')
+        messages.success(request,f'Message "{ordered_message_title}", was sent to "{ordered_message_receiver}".')
 
 
     else:
@@ -106,7 +109,7 @@ def checkoutPayment(request, message_to_checkout):
 
     template = 'checkout/confirmation_page.html'
     context = {
-        'paid_item': paid_item,
+        'ordered_message': ordered_message,
         # 'on_profile_page': True
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,
