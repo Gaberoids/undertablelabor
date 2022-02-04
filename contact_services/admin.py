@@ -4,17 +4,17 @@ from django.contrib import admin
 from .models import ContactMessage
 
 # classes below will be used to display the data on the client side
-class ContactMessageAdmin(admin.ModelAdmin):
+class SentMessagesAdmin(admin.ModelAdmin):
     list_display = (
-        'id',
-        'm_title',
-        'm_body',
+        's_order_number',
+        's_contact_message',
+        's_title',
         'm_share_email_box',
-        'm_created_date',
-        'm_sender',
-        'm_receiver',
+        's_created_date',
+        's_sender',
+        's_receiver',
+        's_order_total',
     )
+    ordering = ('s_order_number',)
 
-    ordering = ('id',)
-
-admin.site.register(ContactMessage, ContactMessageAdmin)
+admin.site.register(OrderedMessages, OrderedMessagesAdmin)
