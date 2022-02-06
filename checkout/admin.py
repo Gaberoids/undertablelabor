@@ -9,6 +9,7 @@ from .models import OrderedMessages
 # classes below will be used to display the data on the client side
 class OrderedMessagesAdmin(admin.ModelAdmin):
     list_display = (
+        'id',
         's_order_number',
         's_contact_message',
         's_title',
@@ -17,6 +18,6 @@ class OrderedMessagesAdmin(admin.ModelAdmin):
         's_receiver',
         's_order_total',
     )
-    ordering = ('s_order_number',)
+    ordering = ('id',)
 
 admin.site.register(OrderedMessages, OrderedMessagesAdmin)
