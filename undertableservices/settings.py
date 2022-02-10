@@ -109,7 +109,7 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-CSRF_TRUSTED_ORIGINS = ["https://8000-orange-monkey-ihvhldff.ws-us30.gitpod.io"]
+# CSRF_TRUSTED_ORIGINS = ["https://8000-orange-monkey-ihvhldff.ws-us31.gitpod.io"]
 # this is for cofirmation emails when a new account is created
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Code extracted from a completed project

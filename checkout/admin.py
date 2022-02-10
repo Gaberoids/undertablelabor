@@ -12,10 +12,7 @@ class OrderedMessagesAdmin(admin.ModelAdmin):
         'id',
         's_order_number',
         's_contact_message',
-        's_title',
         's_created_date',
-        's_sender',
-        's_receiver',
         's_order_total',
     )
     ordering = ('id',)

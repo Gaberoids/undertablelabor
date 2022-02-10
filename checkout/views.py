@@ -66,6 +66,7 @@ def checkoutPayment(request, message_to_checkout):
     # messages below place holderstween logged in user and service rpovider
     print(" Inside checkoutPayment -----------=========-------=========------")
     # stripe
+    print(message_to_checkout)
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     stripe_total_payment = 100
@@ -86,46 +87,22 @@ def checkoutPayment(request, message_to_checkout):
 
         ordered_message = ContactMessage.objects.get(pk=message_to_checkout)
         # ContactMessage object (118)
-
-        ordered_message_order = get_object_or_404(ContactMessage, id=message_to_checkout)
-        # ContactMessage object (118)
-
-        # Adding the purched item to the database table OrderedMessages
-        # print(" for loop _______ to get the table value ---------***********-----------------**************------------")
-        # for x in dir(ordered_message):
-        #     print(x.m_title, x.m_body, x.m_sender, x.m_receiver)
-
         ordered_message_title = ordered_message.m_title
         # g1
-
         ordered_message_receiver = ordered_message.m_receiver
         # serv1
 
-        # populate the order database 
-        database_order = OrderedMessages(
-            "what is this?"
-            # s_contact_message = ordered_message.id,
-            # s_title = ordered_message.m_title,
-            # s_sender = ordered_message.m_sender,
-            # s_receiver = ordered_message.m_receiver,
-            # s_order_total = stripe_total_payment,
+        ordered_message_object = OrderedMessages.objects.create(
+            s_contact_message = ordered_message,
+            s_order_total = stripe_total_payment,
         )
 
-        print("database_order---------***********-----------------**************------------")
-        print(database_order)
-        print("type")
-        print(type(database_order))
-        print("dir")
-        print(dir(database_order))
-        print("items")
-        print(dir(database_order))
+        print(ordered_message_object)
+        print('end of ordered_message_object')
 
-        ordered_message_loop = OrderedMessages.objects.all()
-        print(" for loop _______ to get the table value ---------***********-----------------**************------------")
-        for x in ordered_message_loop:
-            print(x.s_title, x.s_body, x.s_sender, x.s_receiver)
-            print('next')
+        ordered_message_order = ordered_message_object.s_contact_message
 
+        # populate the order database 
         messages.success(request,'Congrats, payment was successfully succeeded')
         messages.success(request,f'Message "{ordered_message_title}", was sent to "{ordered_message_receiver}".')
 
@@ -136,7 +113,7 @@ def checkoutPayment(request, message_to_checkout):
 
     if not stripe_public_key:
         messages.warning(request, 'Stripe public key is missing. Did you forget to set it in your environment?')
-
+    print("end of checkoutpayment---------***********-----------------**************------------")
     template = 'checkout/confirmation_page.html'
     context = {
         'ordered_message': ordered_message,

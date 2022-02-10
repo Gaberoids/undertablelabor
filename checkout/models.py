@@ -1,3 +1,5 @@
+import uuid
+
 from django.db import models
 
 # Create your models here.
@@ -17,16 +19,8 @@ class OrderedMessages(models.Model):
 
     s_contact_message = models.ForeignKey(ContactMessage, null=False, blank=False, on_delete=models.CASCADE)
 
-    s_title = models.CharField(max_length=80,
-                                    null=True, blank=True)
-
     s_created_date = models.DateTimeField(auto_now_add=True)
 
-    s_sender = models.ForeignKey(ContactMessage, on_delete=models.SET_NULL,
-                                     null=True, blank=True, related_name='s_sender_username')
-
-    s_receiver = models.ForeignKey(ContactMessage, on_delete=models.SET_NULL,
-                                     null=True, blank=True, related_name='s_receiver_username')
     s_order_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
 
     def _generate_order_number(self):
