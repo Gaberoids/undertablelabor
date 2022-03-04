@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
+from contact_services.models import ContactMessage
 
 # Create your views here.
 from .models import UserProfile
@@ -32,6 +33,7 @@ def my_profile(request):
         if request.user.is_authenticated:
             print("user authenticated---------***********-----------------**************------------")
             try:
+                # auto fill the form
                 print("inside of try user is authenticated---------***********-----------------**************------------")
                 profile = UserProfile.objects.get(user=request.user)
                 # profile has access to all fieldsrelated to a the user. Including the fileds from Contact_Message and UserProfile models because the key relationships between them
@@ -44,6 +46,12 @@ def my_profile(request):
                 })
                 print("print form inside the try---------***********-----------------**************------------")
                 print(my_profile_form)
+
+                # History
+                message_history = ContactMessage.objects.filter(m_sender=profile)
+                print('message_history')
+                print(message_history)
+
             except UserProfile.DoesNotExist:
                 print("inside of try except---------***********-----------------**************------------")
                 order_form = OrderForm()
@@ -56,7 +64,8 @@ def my_profile(request):
     context = {
         'my_profile_form': my_profile_form,
         # 'orders': orders,
-        'on_profile_page': True
+        'on_profile_page': True,
+        'all_messages': message_history
     }
     # after adding the on_profile_page, go to toast to finalize it. This is for a message to let people know that the profiles was successfully changed
     return render(request, template, context)
@@ -72,3 +81,13 @@ def all_services(request):
     }
 
     return render(request, template, context)
+
+
+def delete_service_message(request, message_id, username):
+    """ Delete a product from the store """
+    username = username
+    template = 'contact_services/contact_service.html'
+    message_to_del = get_object_or_404(ContactMessage, pk=message_id)
+    message_to_del.delete()
+    messages.success(request, 'Message deleted!')
+    return redirect(reverse('contact_service', args=[username]))

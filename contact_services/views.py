@@ -16,8 +16,8 @@ def contact_service(request, username):
     # messages below place holderstween logged in user and service rpovider
     all_messages = ContactMessage.objects.all()
     # print(" for loop all messages to get the table value ---------***********-----------------**************------------")
-    for x in all_messages:
-        print(x.m_title, x.m_body, x.m_sender, x.m_receiver)
+    # for x in all_messages:
+    #     print(x.m_title, x.m_body, x.m_sender, x.m_receiver)
 
     # prepopulate m_sender and m_receiver
     if request.user.is_authenticated:
