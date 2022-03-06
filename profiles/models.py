@@ -19,6 +19,10 @@ class UserProfile(models.Model):
     # default_email_contact = 
     default_service_provider = models.BooleanField(default=False, 
                                                     null=True, blank=True)
+    default_service = models.CharField(max_length=50,
+                                            null=True, blank=True)
+    default_service_details = models.CharField(max_length=400,
+                                            null=True, blank=True)
     default_town_or_city = models.CharField(max_length=50,
                                             null=True, blank=True)
     default_county = models.CharField(max_length=90,

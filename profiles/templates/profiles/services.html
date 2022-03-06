@@ -17,16 +17,13 @@
 
 <h2 class="">Services and Workers</h2>
 
-<p>list the information about a worker here.</p> 
+<!-- beutiful card  https://codepen.io/JavaScriptJunkie/full/WgRBxw or https://codepen.io/alvaromontoro/full/ebPEWb  or simpler https://codepen.io/fernstedt/pen/mxGzor https://codepen.io/wheately/pen/bzNoJQ -->
 <!-- for loop to display list of services and workers -->
 {% for service in services %}
-<p>Service ID = {{ service.id }}</p>
+
 <p>Service user = {{ service.user }}</p>
 <a href="{% url 'contact_service' service.id %}">The place I click AKA = {{ service.default_aka }}</a>
-<p>Service provider = {{ service.default_service_provider }}</p>
-<p>Town and City = {{ service.default_town_or_city }}</p>
-<p>County = {{ service.default_county }}</p>
-<p>Postcode = {{ service.default_postcode }}</p>
+
 <div style=" border-bottom: 4px dotted blue;"></div>
 <hr>
 {% endfor %}
