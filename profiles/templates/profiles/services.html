@@ -19,14 +19,25 @@
 
 <!-- beutiful card  https://codepen.io/JavaScriptJunkie/full/WgRBxw or https://codepen.io/alvaromontoro/full/ebPEWb  or simpler https://codepen.io/fernstedt/pen/mxGzor https://codepen.io/wheately/pen/bzNoJQ -->
 <!-- for loop to display list of services and workers -->
+
+<!-- beggining of card -->
 {% for service in services %}
-
-<p>Service user = {{ service.user }}</p>
-<a href="{% url 'contact_service' service.id %}">The place I click AKA = {{ service.default_aka }}</a>
-
-<div style=" border-bottom: 4px dotted blue;"></div>
-<hr>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Name of Service: {{ service.default_service }}</h5>
+                <p class="card-text">Service description: {{ service.default_service_details }}</p>
+                <p>Service user = {{ service.user }}</p>
+                <a href="{% url 'contact_service' service.id %}" class="btn btn-primary">Write Message</a>
+            </div>
+        </div>
+    </div>
+    
+</div>
 {% endfor %}
+<!-- end of card -->
+
 
 {% endblock %}
 

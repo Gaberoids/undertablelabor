@@ -15,22 +15,21 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     # Shipping info attached to profile
     default_aka = models.CharField(max_length=80,
-                                    null=True, blank=True)
-    # default_email_contact = 
-    default_service_provider = models.BooleanField(default=False, 
-                                                    null=True, blank=True)
+                                    null=True, blank=True,
+                                    verbose_name="Preferred Name")
+    default_service_provider = models.BooleanField(default=False,
+                                                    null=True, blank=True,
+                                                    verbose_name='Are you a service provider?')
     default_service = models.CharField(max_length=50,
-                                            null=True, blank=True)
+                                            null=True, blank=True, verbose_name="Name the service or the type of work you do")
     default_service_details = models.CharField(max_length=400,
-                                            null=True, blank=True)
+                                            null=True, blank=True, verbose_name='Service or worker details')
     default_town_or_city = models.CharField(max_length=50,
-                                            null=True, blank=True)
+                                            null=True, blank=True, verbose_name='Town or city')
     default_county = models.CharField(max_length=90,
-                                      null=True, blank=True)
+                                      null=True, blank=True, verbose_name='County')
     default_postcode = models.CharField(max_length=20,
-                                        null=True, blank=True)
-    # default_country = CountryField(blank_label='Country',
-    #                                null=True, blank=True)
+                                        null=True, blank=True, verbose_name='Postal Code')
 
     # method to return the user name
     def __str__(self):
