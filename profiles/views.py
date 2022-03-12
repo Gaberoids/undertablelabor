@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from contact_services.models import ContactMessage
+from checkout.models import OrderedMessages
 
 # Create your views here.
 from .models import UserProfile
@@ -34,11 +35,12 @@ def my_profile(request):
                             'the form is valid.'))
 
     my_profile_form = UserMyProfileForm(instance=profile)
-    # orders = profile.orders.all()
+    # orders = OrderedMessages.objects.filter(s_contact_message.m_sender=profile)
+    orders = OrderedMessages.objects.all()
     template = 'profiles/profile.html'
     context = {
         'my_profile_form': my_profile_form,
-        # 'orders': orders,
+        'orders': orders,
         'on_profile_page': True,
         # 'all_messages': message_history
     }
