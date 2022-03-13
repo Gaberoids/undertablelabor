@@ -21,24 +21,50 @@
 <!-- for loop to display list of services and workers -->
 
 <!-- beggining of card -->
-{% for service in services %}
-<div class="row">
-    <div class="col-sm-6">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Name of Service: {{ service.default_service }}</h5>
-                <p class="card-text">Service description: {{ service.default_service_details }}</p>
-                <p>Service user = {{ service.user }}</p>
-                <a href="{% url 'contact_service' service.id %}" class="btn btn-primary">Write Message</a>
+
+<!-- end of card -->
+
+<!-- card number 2 -->
+
+<body>
+    <div class="py-5">
+        <div class="container">
+            <div class="row hidden-md-up">
+
+                {% for service in services %}
+                <div class="col-md-4">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-4 align-items-center">
+                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin"
+                                            class="rounded-circle" width="150">
+                                    </div>
+                                    <div class="col-8 mt-3">
+                                        <h4>John Doe</h4>
+                                        <p class="text-secondary mb-1">{{ service.default_service }}</p>
+                                        <p class="text-muted font-size-sm">{{ service.default_service_details }}</p>
+                                        <p class="text-muted font-size-sm">{{ service.default_county }}</p>
+                                        <button class="btn btn-primary">Follow</button>
+                                        <button class="btn btn-outline-primary">Message</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
             </div>
         </div>
     </div>
-    
-</div>
-{% endfor %}
-<!-- end of card -->
-
-
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    <script src="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.min.js"></script>
+</body>
+<!-- card number 2 -->
 {% endblock %}
 
 {% block postloadjs %}
