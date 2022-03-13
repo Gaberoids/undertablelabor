@@ -37,12 +37,13 @@ def my_profile(request):
     my_profile_form = UserMyProfileForm(instance=profile)
     # orders = OrderedMessages.objects.filter(s_contact_message.m_sender=profile)
     orders = OrderedMessages.objects.all()
+    message_history = ContactMessage.objects.filter(m_receiver=profile,m_sender=profile)
     template = 'profiles/profile.html'
     context = {
         'my_profile_form': my_profile_form,
         'orders': orders,
         'on_profile_page': True,
-        # 'all_messages': message_history
+        'all_messages': message_history
     }
     # after adding the on_profile_page, go to toast to finalize it. This is for a message to let people know that the profiles was successfully changed
     return render(request, template, context)

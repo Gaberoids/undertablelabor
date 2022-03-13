@@ -16,6 +16,7 @@
 {% block content %}
 <!--  profile bootstrap https://bootsnipp.com/snippets/K0ZmK version 1  -->
 <!-- vesion 2 https://freefrontend.com/bootstrap-profiles/ -->
+<!-- 3 https://www.bootdey.com/snippets/view/media-profile -->
 <div class="container">
     <div class="main-body">
 
@@ -48,64 +49,38 @@
                 </div>
                 <div class="card mt-3">
                     <h3>Message history</h3>
-                    <p> logged in user = {{ request.user }} </p>
-                    {% for order in orders %}
-                        <p>s_contact_message = {{order.s_contact_message}}</p>
-                        <p>s_contact_message.m_sender = {{ order.s_contact_message.m_sender }}</p>
-                        <p>s_contact_message.m_sender | type = {{ order.s_contact_message.m_sender}}</p>
-                        <!-- { if s_contact_message.m_sender|get_type == 'str' %}
+                    {% comment %}
+                    <!-- <p> logged in user = {{ request.user }} </p> -->
+                    <!-- {% for order in orders %}
+                    <p>s_contact_message = {{order.s_contact_message}}</p>
+                    <p>s_contact_message.m_sender = {{ order.s_contact_message.m_sender }}</p>
+                    <p>s_contact_message.m_sender | type = {{ order.s_contact_message.m_sender}}</p> -->
+                    <!-- { if s_contact_message.m_sender|get_type == 'str' %}
                         <p>s_contact_message.m_sender type == 'str'</p>
                         { else %}
                         <p>s_contact_message.m_sender type != 'str'</p>
                         { endif %} -->
 
-                        <p> logged in user = {{ request.user }} </p>
-                        <p> logged in user | type = {{ request.user }} </p>
-                        <!-- { if request.user|get_type == 'str' %}
+                    <!-- <p> logged in user = {{ request.user }} </p>
+                    <p> logged in user | type = {{ request.user }} </p> -->
+                    <!-- { if request.user|get_type == 'str' %}
                             <p>request.user type == 'str'</p>
                         { else %}
                             <p>request.user type != 'str'</p>
                         { endif %} -->
 
 
-<hr>
-                        {% if order.s_contact_message.m_sender != request.user %}
-                            <p>request.user2               ={{ request.user|length }}.</p>
-                            VS
-                            <p>s_contact_message.m_sender2 ={{ order.s_contact_message.m_sender|length }}.</p>
-                        {% endif %}
-                    {% endfor%}
-                    
-                    
-                    {% if request.user.is_authenticated %}
-                    <h3>MESSAGE HISTORY</h3>
-                    {% for message in all_messages %}
-                    {% if message %}
-                    <p>Message sender: {{ message.m_sender }}</p>
-                    <p>User logged in: username {{ username }} or AKA: {{ service.default_aka }}</p>
-                    <p>User request.user {{ request.user }}</p>
-                    <p>{{message.m_title}}</p>
-                    <p>{{message.m_body}}</p>
-                    <p>{{message.m_share_email_box}}</p>
-                    <p>{{message.m_created_date}}</p>
-                    {% if not message.m_sender %}
-                    <p>{{message.m_sender}}</p>
-                    {% else %}
-                    <p>{{m_sender}}</p>
+                    <!-- <hr>
+                    {% if order.s_contact_message.m_sender != request.user %}
+                    <p>request.user2 ={{ request.user|length }}.</p>
+                    VS
+                    <p>s_contact_message.m_sender2 ={{ order.s_contact_message.m_sender|length }}.</p>
                     {% endif %}
-                    <p>{{message.m_receiver}}</p>
-                    <a type="button"
-                        href="{% url 'delete_service_message' message_id=message.id username=request.user %}">Remove
-                        message!</a>
-                    <div style="border-bottom: 2px solid rgb(143, 114, 60);"></div>
-                    {% else %}
-                    <div style="border-bottom: 2px solid rgb(143, 114, 60);">You have no message history with this user
-                    </div>
-                    {% endif %}
-                    {% endfor %}
-                    {% else %}
-                    <!--  DO NOT SHOW ANY MESSAGE HISTORY IF USER IS NOT LOGGED IN -->
-                    {% endif%}
+                    {% endfor%} -->
+                    {% endcomment %}
+
+
+
                 </div>
             </div>
             <div class="col-md-8">
@@ -126,20 +101,72 @@
 
 
                 <div class="row gutters-sm">
-                    <div class="col-sm-6 mb-3">
+                    <div class="col-sm-12 mb-3">
                         <div class="card h-100">
                             <div class="card-body">
                                 <h6 class="d-flex align-items-center mb-3"><i
-                                        class="material-icons text-info mr-2">assignment</i>Project Status</h6>
+                                        class="material-icons text-info mr-2">Draft Messages</i>Project
+                                    Status</h6>
 
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">To:</th>
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Date</th>
+                                        </tr>
+                                    </thead>
+                                    {% if all_messages %}
+                                    {% for message in all_messages %}
+
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>{{ message.m_sender }}</td>
+                                            <td>{{ message.m_title }}</td>
+                                            <td>{{ message.m_created_date }}</td>
+                                        </tr>
+                                    </tbody>
+                                    {% endfor %}
+                                    {% else%}
+                                    <p>You do not have stored drafts.</p>
+                                    {% endif %}
+                                </table>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 mb-3">
+                    <div class="col-sm-12 mb-3">
                         <div class="card h-100">
                             <div class="card-body">
-                                <h6 class="d-flex align-items-center mb-3"><i
-                                        class="material-icons text-info mr-2">assignment</i>Project Status</h6>
+                                <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Sent
+                                        Messages</i>Project
+                                    Status</h6>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">To:</th>
+                                            <th scope="col">Title</th>
+                                            <th scope="col">Date</th>
+                                        </tr>
+                                    </thead>
+                                    {% if orders %}
+                                    {% for order in orders %}
+
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>{{ order.s_contact_message.m_sender }}</td>
+                                            <td>{{ order.s_contact_message.m_title }}</td>
+                                            <td>{{ order.s_created_date }}</td>
+                                        </tr>
+                                    </tbody>
+                                    {% endfor %}
+                                    {% else %}
+                                    <p>You have not placed an order yet.</p>
+                                    {% endif %}
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -155,39 +182,7 @@
 </div>
 <!-- end of profile bootstrap -->
 
-<h2 class="">My Profile</h2>
 
-<!-- crispy form start below -->
-
-
-<h3>Message history</h3>
-{% if request.user.is_authenticated %}
-<h3>MESSAGE HISTORY</h3>
-{% for message in all_messages %}
-{% if message %}
-<p>Message sender: {{ message.m_sender }}</p>
-<p>User logged in: username {{ username }} or AKA: {{ service.default_aka }}</p>
-<p>User request.user {{ request.user }}</p>
-<p>{{message.m_title}}</p>
-<p>{{message.m_body}}</p>
-<p>{{message.m_share_email_box}}</p>
-<p>{{message.m_created_date}}</p>
-{% if not message.m_sender %}
-<p>{{message.m_sender}}</p>
-{% else %}
-<p>{{m_sender}}</p>
-{% endif %}
-<p>{{message.m_receiver}}</p>
-<a type="button" href="{% url 'delete_service_message' message_id=message.id username=request.user %}">Remove
-    message!</a>
-<div style="border-bottom: 2px solid rgb(143, 114, 60);"></div>
-{% else %}
-<div style="border-bottom: 2px solid rgb(143, 114, 60);">You have no message history with this user</div>
-{% endif %}
-{% endfor %}
-{% else %}
-<!--  DO NOT SHOW ANY MESSAGE HISTORY IF USER IS NOT LOGGED IN -->
-{% endif%}
 
 {% endblock %}
 
