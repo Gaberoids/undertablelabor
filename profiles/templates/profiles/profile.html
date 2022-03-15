@@ -50,35 +50,44 @@
                 <div class="card mt-3">
                     <h3>Message history</h3>
                     {% comment %}
-                    <!-- <p> logged in user = {{ request.user }} </p> -->
-                    <!-- {% for order in orders %}
+                    <!-- <p> logged in user = {{ request.user }} </p>
+                    {% for order in orders %}
                     <p>s_contact_message = {{order.s_contact_message}}</p>
                     <p>s_contact_message.m_sender = {{ order.s_contact_message.m_sender }}</p>
-                    <p>s_contact_message.m_sender | type = {{ order.s_contact_message.m_sender}}</p> -->
-                    <!-- { if s_contact_message.m_sender|get_type == 'str' %}
+                    <p>s_contact_message.m_sender | type = {{ order.s_contact_message.m_sender}}</p>
+                    { if s_contact_message.m_sender|get_type == 'str' %}
                         <p>s_contact_message.m_sender type == 'str'</p>
                         { else %}
                         <p>s_contact_message.m_sender type != 'str'</p>
-                        { endif %} -->
+                        { endif %}
 
-                    <!-- <p> logged in user = {{ request.user }} </p>
-                    <p> logged in user | type = {{ request.user }} </p> -->
-                    <!-- { if request.user|get_type == 'str' %}
+                    <p> logged in user = {{ request.user }} </p>
+                    <p> logged in user | type = {{ request.user }} </p>
+                    { if request.user|get_type == 'str' %}
                             <p>request.user type == 'str'</p>
                         { else %}
                             <p>request.user type != 'str'</p>
                         { endif %} -->
+                        {% endcomment %}
 
+                    <hr>
+                    {% for order in orders %}
 
-                    <!-- <hr>
-                    {% if order.s_contact_message.m_sender != request.user %}
-                    <p>request.user2 ={{ request.user|length }}.</p>
+                    <p> logged in user = {{ request.user }} </p>
+                    <p>s_contact_message.m_sender = {{ order.s_contact_message.m_sender }}</p>
+
+                    {% if order.s_contact_message.m_sender.user == request.user %}
+                    <hr>
+                    INSIDE THE IF STATEMENT
+                    <p>request.user2 ={{ request.user }}.</p>
                     VS
                     <p>s_contact_message.m_sender2 ={{ order.s_contact_message.m_sender|length }}.</p>
+                    {% else %}
+                    <p>INSIDE THE ELSE STATEMENT</p>
+                    <hr>
                     {% endif %}
-                    {% endfor%} -->
-                    {% endcomment %}
 
+                    {% endfor %}
 
 
                 </div>
@@ -160,6 +169,7 @@
                                             <td>{{ order.s_contact_message.m_sender }}</td>
                                             <td>{{ order.s_contact_message.m_title }}</td>
                                             <td>{{ order.s_created_date }}</td>
+                                            <td>{{ order.s_contact_message }}</td>
                                         </tr>
                                     </tbody>
                                     {% endfor %}

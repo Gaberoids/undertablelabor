@@ -47,7 +47,9 @@
                                         <p class="text-secondary mb-1">{{ service.default_service }}</p>
                                         <p class="text-muted font-size-sm">{{ service.default_service_details }}</p>
                                         <p class="text-muted font-size-sm">{{ service.default_county }}</p>
-                                        <button class="btn btn-primary">Follow</button>
+                                        <a href="{% url 'contact_service' service.id %}" class="btn btn-primary">Write Message</a>
+                                        <button onclick="" href="{% url 'contact_service' service.id %}"
+                                            class="btn btn-primary">Follow</button>
                                         <button class="btn btn-outline-primary">Message</button>
                                     </div>
                                 </div>
