@@ -1,4 +1,4 @@
-/* profile css for profile.html */
+/* profile css for profile.html  ---------------------------------- */
 body {
     margin-top: 20px;
     color: #1a202c;
@@ -61,3 +61,24 @@ body {
 }
 
 /* end of Css profile */
+
+/* services.html business cards ---------------------------------- */
+.business-card {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    width: 372px;
+    height: 212px;
+
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid rgba(0, 0, 0, .125);
+    border-radius: .25rem;
+}
+
+.business-card-image {
+    max-width: 101px;
+}
+
+.business-card-info {
+}
