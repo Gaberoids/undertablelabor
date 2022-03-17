@@ -35,20 +35,9 @@ def my_profile(request):
                             'the form is valid.'))
 
     my_profile_form = UserMyProfileForm(instance=profile)
-    # orders = OrderedMessages.objects.filter(s_contact_message__m_sender=profile)
-    # print(orders)
-    # print("orders ---------***********-----------------**************------------")
-    orders = OrderedMessages.objects.all()
-    # for order in orders:
-    #     order_id = order.s_contact_message
-    #     print(order_id)
-    #     print('order id above')
-    #     contact_message = ContactMessage.objects.get(id=order_id)
-    #     print(contact_message)
-    #     print('contact message above')
-    #     contact_message_sender_name = contact_message.contact_message_sender_name
-    #     print(contact_message_sender_name)
-    #     print("contact_message_sender_name above ---------***********-----------------**************------------")
+    orders = OrderedMessages.objects.filter(s_contact_message__m_sender=profile)
+    print(orders)
+    print("orders ---------***********-----------------**************------------")
     message_history = ContactMessage.objects.filter(m_receiver=profile,m_sender=profile)
     template = 'profiles/profile.html'
     context = {

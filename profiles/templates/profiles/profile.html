@@ -47,50 +47,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card mt-3">
-                    <h3>Message history</h3>
-                    {% comment %}
-                    <!-- <p> logged in user = {{ request.user }} </p>
-                    {% for order in orders %}
-                    <p>s_contact_message = {{order.s_contact_message}}</p>
-                    <p>s_contact_message.m_sender = {{ order.s_contact_message.m_sender }}</p>
-                    <p>s_contact_message.m_sender | type = {{ order.s_contact_message.m_sender}}</p>
-                    { if s_contact_message.m_sender|get_type == 'str' %}
-                        <p>s_contact_message.m_sender type == 'str'</p>
-                        { else %}
-                        <p>s_contact_message.m_sender type != 'str'</p>
-                        { endif %}
 
-                    <p> logged in user = {{ request.user }} </p>
-                    <p> logged in user | type = {{ request.user }} </p>
-                    { if request.user|get_type == 'str' %}
-                            <p>request.user type == 'str'</p>
-                        { else %}
-                            <p>request.user type != 'str'</p>
-                        { endif %} -->
-                        {% endcomment %}
-
-                    <hr>
-                    {% for order in orders %}
-
-                    <p> logged in user = {{ request.user }} </p>
-                    <p>s_contact_message.m_sender = {{ order.s_contact_message.m_sender }}</p>
-
-                    {% if order.s_contact_message.m_sender.user == request.user %}
-                    <hr>
-                    INSIDE THE IF STATEMENT
-                    <p>request.user2 ={{ request.user }}.</p>
-                    VS
-                    <p>s_contact_message.m_sender2 ={{ order.s_contact_message.m_sender|length }}.</p>
-                    {% else %}
-                    <p>INSIDE THE ELSE STATEMENT</p>
-                    <hr>
-                    {% endif %}
-
-                    {% endfor %}
-
-
-                </div>
             </div>
             <div class="col-md-8">
                 <div class="card mb-3">
@@ -116,6 +73,7 @@
                                 <h6 class="d-flex align-items-center mb-3"><i
                                         class="material-icons text-info mr-2">Draft Messages</i>Project
                                     Status</h6>
+                                    {% if all_messages %}
 
                                 <table class="table table-hover">
                                     <thead>
@@ -126,7 +84,6 @@
                                             <th scope="col">Date</th>
                                         </tr>
                                     </thead>
-                                    {% if all_messages %}
                                     {% for message in all_messages %}
 
                                     <tbody>
@@ -138,19 +95,26 @@
                                         </tr>
                                     </tbody>
                                     {% endfor %}
-                                    {% else%}
-                                    <p>You do not have stored drafts.</p>
-                                    {% endif %}
                                 </table>
+                                                                    {% else%}
+                                                                    <p>You do not have stored drafts.</p>
+                                                                    {% endif %}
+
                             </div>
                         </div>
                     </div>
+       
+                    
+                    
+                    
                     <div class="col-sm-12 mb-3">
                         <div class="card h-100">
                             <div class="card-body">
                                 <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Sent
                                         Messages</i>Project
                                     Status</h6>
+                                                                        {% if orders %}
+
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
@@ -160,7 +124,6 @@
                                             <th scope="col">Date</th>
                                         </tr>
                                     </thead>
-                                    {% if orders %}
                                     {% for order in orders %}
 
                                     <tbody>
@@ -173,10 +136,11 @@
                                         </tr>
                                     </tbody>
                                     {% endfor %}
-                                    {% else %}
-                                    <p>You have not placed an order yet.</p>
-                                    {% endif %}
                                 </table>
+                                {% else %}
+                                <p>You have not placed an order yet.</p>
+                                {% endif %}
+
                             </div>
                         </div>
                     </div>

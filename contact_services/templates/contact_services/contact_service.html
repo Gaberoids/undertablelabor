@@ -35,29 +35,49 @@
  
         {% if request.user.is_authenticated %}
             <h3>MESSAGE HISTORY</h3>
-            {% for message in all_messages %}
-                {% if message %}
-                    <p>Message sender: {{ message.m_sender }}</p>
-                    <p>User logged in: username {{ username }} or AKA: {{ service.default_aka }}</p>
-                    <p>User request.user {{ request.user }}</p>
-                    <p>{{message.m_title}}</p>
-                    <p>{{message.m_body}}</p>
-                    <p>{{message.m_share_email_box}}</p>
-                    <p>{{message.m_created_date}}</p>
-                    {% if not message.m_sender %}
-                        <p>{{message.m_sender}}</p>
-                    {% else %}
-                        <p>{{m_sender}}</p>
-                    {% endif %}
-                    <p>{{message.m_receiver}}</p>
-                    <a type="button"
-                        href="{% url 'delete_service_message' message_id=message.id username=service.id %}">Remove
-                        message!</a>
-                    <div style="border-bottom: 2px solid rgb(143, 114, 60);"></div>
-                {% else %}
-                    <div style="border-bottom: 2px solid rgb(143, 114, 60);">You have no message history with this user</div>
-                {% endif %}
-            {% endfor %}
+                                   <div class="col-sm-12 mb-3">
+                                       <div class="card h-100">
+                                           <div class="card-body">
+                                               <h6 class="d-flex align-items-center mb-3"><i
+                                                       class="material-icons text-info mr-2"> Messages History</i>Project
+                                                   Status</h6>
+                                               {% if all_messages %}
+
+                                               <table class="table table-hover">
+                                                   <thead>
+                                                       <tr>
+                                                           <th scope="col">#</th>
+                                                           <th scope="col">To:</th>
+                                                           <th scope="col">Title</th>
+                                                           <th scope="col">Created</th>
+                                                           <th>Sent</th>
+                                                       </tr>
+                                                   </thead>
+                                                   {% for message in all_messages %}
+
+                                                   <tbody>
+                                                       <tr>
+                                                           <th scope="row">1</th>
+                                                           <td>{{ message.m_sender }}</td>
+                                                           <td>{{ message.m_title }}</td>
+                                                           <td>{{ message.m_created_date }}</td>
+                                                           {% if message.m_sent == true %}
+                                                           <td>Yes</td>
+                                                            {% else %}
+                                                            <td>No</td>
+                                                            {% endif %}
+                                                        </tr>
+                                                   </tbody>
+                                                   {% endfor %}
+                                               </table>
+                                               {% else%}
+                                               <p>You do not have stored drafts.</p>
+                                               {% endif %}
+
+                                           </div>
+                                       </div>
+                                   </div> \
+
         {% else %}
             <!--  DO NOT SHOW ANY MESSAGE HISTORY IF USER IS NOT LOGGED IN -->
         {% endif%}
