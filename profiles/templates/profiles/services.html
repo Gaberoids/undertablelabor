@@ -20,24 +20,19 @@
 <!-- beutiful card  https://codepen.io/JavaScriptJunkie/full/WgRBxw or https://codepen.io/alvaromontoro/full/ebPEWb  or simpler https://codepen.io/fernstedt/pen/mxGzor https://codepen.io/wheately/pen/bzNoJQ -->
 <!-- for loop to display list of services and workers -->
 
-<!-- beggining of card -->
-
-<!-- end of card -->
 
 <!-- card number 2 -->
-
 <body>
     <div class="container-fluid m-1 m-md-3">
         <div class="row">
             {% for service in services %}
-           
                 <div class="business-card m-1 ml-sm-3 mt-sm-3">
                     <div class="business-card-image">
                         <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle"
                             width="100">
                     </div>
                     <div class="business-card-info">
-                        <h4>John Doe</h4>
+                        <h4>{{ service.default_aka }}</h4>
                         <hr>
                         <p class="text-secondary mb-1">{{ service.default_service }}</p>
                         <p class="text-muted font-size-sm">{{ service.default_service_details }}</p>
@@ -45,14 +40,13 @@
                         <a href="{% url 'contact_service' service.id %}" class="btn btn-primary">Write Message</a>
                     </div>
                 </div>
-               
             {% endfor %}
         </div>
-
     </div>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <!-- these scripts are not necessary on gitpod user experience. Try on the deployed version -->
+    <!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
-    <script src="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.min.js"></script>
+    <script src="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.min.js"></script> -->
 </body>
 <!-- card number 2 -->
 {% endblock %}
