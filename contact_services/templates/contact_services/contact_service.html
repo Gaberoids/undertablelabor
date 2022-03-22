@@ -7,45 +7,50 @@
 
 {% block page_header %}
 <div class="container header-container">
-    <div class="row">
+    <div class="row mx-auto text-center">
         <div class="col">
-            <h2 class="logo-font mb-4">Service Business Card Contact Page</h2>
-</div>
+            <h2 class="logo-font mb-4">New Message</h2>
+        </div>
     </div>
 </div>
 {% endblock %}
 
 {% block content %}
 
-<div class="container m-1 m-md-3 ">
-    <div class="row business-card-contactpage  m-1 ml-sm-3 mt-sm-3">
-
-            <div class="col-3 business-card-image">
-                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle"
-                    width="100">
+<div class="container-fluid m-1 m-md-3 ">
+    <div class="row ">
+        <!-- business card -->
+        <div class="col-6 business-card-contactpage  mx-auto">
+            <div class="row">
+                <div class="col-3 business-card-image">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle"
+                        width="100">
+                </div>
+                <div class="col business-card-info">
+                    <h4 class="row">{{ service.default_aka }}</h4>
+                    <hr>
+                    <p class="row text-secondary mb-1">Service/Labor:{{ service.default_service }}</p>
+                    <p class="row text-muted font-size-sm">Service Details{{ service.default_service_details }}</p>
+                    <p class="row text-muted font-size-sm">County: {{ service.default_county }}</p>
+                    <a href="{% url 'contact_service' service.id %}" class="btn btn-primary">Write Message</a>
+                </div>
             </div>
-            <div class="col-9 business-card-info">
-                <h4 class="row">{{ service.default_aka }}</h4>
-                <hr>
-                <p class="row text-secondary mb-1">Service/Labor:{{ service.default_service }}</p>
-                <p class="row text-muted font-size-sm">Service Details{{ service.default_service_details }}</p>
-                <p class="row text-muted font-size-sm">County: {{ service.default_county }}</p>
-                <a href="{% url 'contact_service' service.id %}" class="btn btn-primary">Write Message</a>
-            </div>
+        </div>
+        <div class="col-6">
+            <!-- form to send message -->
+            <form class="" action="{% url 'checkout' %}" method="POST" id="">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button class="">Submit message and go to checkout page</button>
+            </form>
+        </div>
 
     </div>
 </div>
 
 
 
-<!-- button -->
-<h3>Contact this service</h3>
-<p>Crispy Form section to send message</p>
-<form class="" action="{% url 'checkout' %}" method="POST" id="">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <button class="">Submit message and go to checkout page</button>
-</form>
+
 
 <!-- generate a row for each message in the history -->
 
