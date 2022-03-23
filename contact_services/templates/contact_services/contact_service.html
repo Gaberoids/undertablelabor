@@ -19,9 +19,15 @@
 
 <div class="container-fluid m-1 m-md-3 ">
     <div class="row ">
+
         <!-- business card -->
-        <div class="col-6 business-card-contactpage  mx-auto">
+        <div class="col-md-6 ">
             <div class="row">
+                <div class="col">
+                    <h2>To:</h2>
+                </div>
+            </div>
+            <div class="row business-card-contactpage">
                 <div class="col-3 business-card-image">
                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle"
                         width="100">
@@ -32,18 +38,68 @@
                     <p class="row text-secondary mb-1">Service/Labor:{{ service.default_service }}</p>
                     <p class="row text-muted font-size-sm">Service Details{{ service.default_service_details }}</p>
                     <p class="row text-muted font-size-sm">County: {{ service.default_county }}</p>
-                    <a href="{% url 'contact_service' service.id %}" class="btn btn-primary">Write Message</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <!-- form to send message -->
+                    <form class="" action="{% url 'checkout' %}" method="POST" id="">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <button class="">Submit message and go to checkout page</button>
+                    </form>
                 </div>
             </div>
         </div>
-        <div class="col-6">
-            <!-- form to send message -->
-            <form class="" action="{% url 'checkout' %}" method="POST" id="">
-                {% csrf_token %}
-                {{ form|crispy }}
-                <button class="">Submit message and go to checkout page</button>
-            </form>
+        
+        <!-- message history -->
+        <div class="col-md-6">
+            {% if request.user.is_authenticated %}
+            <h3>MESSAGE HISTORY</h3>
+            <div class="col-sm-12 mb-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2"> Messages
+                                History</i>Project
+                            Status</h6>
+                        {% if all_messages %}
+
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">To:</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Created</th>
+                                    <th>Sent</th>
+                                </tr>
+                            </thead>
+                            {% for message in all_messages %}
+
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>{{ message.m_sender }}</td>
+                                    <td>{{ message.m_title }}</td>
+                                    <td>{{ message.m_created_date }}</td>
+                                    {% if message.m_sent == true %}
+                                    <td>Yes</td>
+                                    {% else %}
+                                    <td>No</td>
+                                    {% endif %}
+                                </tr>
+                            </tbody>
+                            {% endfor %}
+                        </table>
+                        {% else%}
+                        <p>You do not have stored drafts.</p>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
         </div>
+
 
     </div>
 </div>
@@ -54,50 +110,7 @@
 
 <!-- generate a row for each message in the history -->
 
-{% if request.user.is_authenticated %}
-<h3>MESSAGE HISTORY</h3>
-<div class="col-sm-12 mb-3">
-    <div class="card h-100">
-        <div class="card-body">
-            <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2"> Messages
-                    History</i>Project
-                Status</h6>
-            {% if all_messages %}
 
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">To:</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Created</th>
-                        <th>Sent</th>
-                    </tr>
-                </thead>
-                {% for message in all_messages %}
-
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>{{ message.m_sender }}</td>
-                        <td>{{ message.m_title }}</td>
-                        <td>{{ message.m_created_date }}</td>
-                        {% if message.m_sent == true %}
-                        <td>Yes</td>
-                        {% else %}
-                        <td>No</td>
-                        {% endif %}
-                    </tr>
-                </tbody>
-                {% endfor %}
-            </table>
-            {% else%}
-            <p>You do not have stored drafts.</p>
-            {% endif %}
-
-        </div>
-    </div>
-</div> \
 
 {% else %}
 <!--  DO NOT SHOW ANY MESSAGE HISTORY IF USER IS NOT LOGGED IN -->

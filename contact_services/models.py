@@ -11,22 +11,22 @@ class ContactMessage(models.Model):
     from user to service provider
     """
     m_title = models.CharField(max_length=80,
-                                    null=True, blank=True)
+                                    null=True, blank=True, verbose_name='Title: ')
     m_body = models.CharField(max_length=50,
-                                            null=True, blank=True)
-    m_sender_email = models.EmailField(max_length=254, null=False, blank=True)
+                                            null=True, blank=True, verbose_name='Body: ')
+    m_sender_email = models.EmailField(max_length=254, null=False, blank=True, verbose_name='Email: ')
 
     m_share_email_box = models.BooleanField(default=False, 
-                                                    null=True, blank=True)
+                                                    null=True, blank=True, verbose_name='Would you like to share your email: ')
     m_created_date = models.DateTimeField(auto_now_add=True)
 
     m_sender = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
-                                     null=True, blank=True, related_name='m_sender_username')
+                                     null=True, blank=True, related_name='m_sender_username', verbose_name='Sender: ')
 
     m_receiver = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
-                                     null=True, blank=True, related_name='m_receiver_username')
+                                     null=True, blank=True, related_name='m_receiver_username', verbose_name='To: ')
     m_sent = models.BooleanField(default=False, 
-                                    null=True, blank=True)
+                                    null=True, blank=True, verbose_name='Sent: ')
 
 
     # def _generate_m_id(self):
