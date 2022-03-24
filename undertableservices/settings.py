@@ -135,6 +135,9 @@ DATABASES = {
     }
 }
 
+# if using media files 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 if 'DATABASE_URL' in os.environ:
