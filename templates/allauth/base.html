@@ -82,19 +82,22 @@
                 </form>
             </div>
         </nav>
-        {% if request.user.is_authenticated %}
-            <p>Welcome {{ request.user }}</p>
-        {% endif %}
         
         
     </header>
+    <!-- system Messages -->
     {% if messages %}
         {% for message in messages %}
             <div style="background-color: aqua;">{{ message }}</div>
             
-        {% endfor%}
-        
+        {% endfor%}    
     {% endif %}
+
+    <!-- Logged in  welcome greeting -->
+    {% if request.user.is_authenticated %}
+    <p>Welcome {{ request.user }}</p>
+    {% endif %}
+
     {% block page_header %}
     {% endblock %}
 

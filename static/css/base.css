@@ -2,17 +2,19 @@ html {
     height: 100%;
 }
 
-body {
+#body-homepage {
     background: url('/media/worker_picture.png') no-repeat center center fixed;
     background-size: cover;
     height: calc(100vh - 164px);
     color: #555;
     font-family: 'Lato';
 }
+/* cover image is from https: //www.canva.com/photos/MADQ5O_Mt5I/ */
 
+/* 
 .header-container {
     padding-top: 164px;
-}
+} */
 
 /* profile css for profile.html  ---------------------------------- */
 
