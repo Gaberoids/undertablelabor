@@ -2,6 +2,13 @@ html {
     height: 100%;
 }
 
+/* .header-container {
+    padding-top: 164px;
+} */
+
+/* Base.html css ---------------------------------- */
+
+/* index.html css ---------------------------------- */
 #body-homepage {
     background: url('/media/worker_picture.png') no-repeat center center fixed;
     background-size: cover;
@@ -11,18 +18,16 @@ html {
 }
 /* cover image is from https: //www.canva.com/photos/MADQ5O_Mt5I/ */
 
-/* 
-.header-container {
-    padding-top: 164px;
-} */
+
+
 
 /* profile css for profile.html  ---------------------------------- */
 
-/* body {
+body {
     color: #1a202c;
     text-align: left;
     background-color: #e2e8f0;
-} */
+}
 
 .main-body {
     padding: 15px;

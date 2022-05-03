@@ -6,26 +6,24 @@
 {% endblock %}
 
 {% block page_header %}
-<!-- <div class="container header-container">
-    <div class="row">
-        <div class="col"></div>
+<div class="container header-container">
+    <div class="row mx-auto text-center">
+        <div class="col">
+            <h2 class="logo-font mb-4">Services and Workers</h2>
+        </div>
     </div>
-</div> -->
+</div>
 {% endblock %}
 
 {% block content %}
-
-<h2 class="">Services and Workers</h2>
-
-<!-- beutiful card  https://codepen.io/JavaScriptJunkie/full/WgRBxw or https://codepen.io/alvaromontoro/full/ebPEWb  or simpler https://codepen.io/fernstedt/pen/mxGzor https://codepen.io/wheately/pen/bzNoJQ -->
-<!-- for loop to display list of services and workers -->
-
 
 <!-- card number 2 -->
 <body>
     <div class="container-fluid m-1 m-md-3">
         <div class="row">
+            <!-- for loop to display list of services and workers -->
             {% for service in services %}
+                <!-- beautiful card  https://codepen.io/JavaScriptJunkie/full/WgRBxw or https://codepen.io/alvaromontoro/full/ebPEWb  or simpler https://codepen.io/fernstedt/pen/mxGzor https://codepen.io/wheately/pen/bzNoJQ -->
                 <div class="business-card m-1 ml-sm-3 mt-sm-3">
                     <div class="business-card-image">
                         <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle"

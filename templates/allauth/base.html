@@ -95,12 +95,16 @@
 
     <!-- Logged in  welcome greeting -->
     {% if request.user.is_authenticated %}
-    <p>Welcome {{ request.user }}</p>
+    <div class="text-left m-2" >
+    Welcome {{ request.user }}
+    </div>
     {% endif %}
 
+    <!-- header block -->
     {% block page_header %}
     {% endblock %}
 
+    <!-- content block -->
     {% block content %}
     {% endblock %}
 
