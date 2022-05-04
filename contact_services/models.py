@@ -12,7 +12,7 @@ class ContactMessage(models.Model):
     """
     m_title = models.CharField(max_length=80,
                                     null=True, blank=True, verbose_name='Title: ')
-    m_body = models.CharField(max_length=50,
+    m_body = models.CharField(max_length=4000,
                                             null=True, blank=True, verbose_name='Body: ')
     m_sender_email = models.EmailField(max_length=254, null=False, blank=True, verbose_name='Email: ')
 
