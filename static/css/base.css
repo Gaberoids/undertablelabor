@@ -95,8 +95,11 @@ body {
     word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;
-    border: 0 solid rgba(0, 0, 0, .125);
     border-radius: .25rem;
+
+    padding: 8px;
+    border: 1px solid rgb(53, 13, 13);
+    box-shadow: -9px 12px 10px grey;
 }
 
 .business-card-image {
