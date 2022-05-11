@@ -2,11 +2,15 @@ html {
     height: 100%;
 }
 
-/* .header-container {
-    padding-top: 164px;
-} */
+header {
+    box-shadow: 1px 0px 8px 0px grey;
+}
 
 /* Base.html css ---------------------------------- */
+
+.bg-light {
+    background-color: #fff !important;
+}
 
 /* index.html css ---------------------------------- */
 #body-homepage {
@@ -119,4 +123,9 @@ body {
     background-clip: border-box;
     border: 0 solid rgba(0, 0, 0, .125);
     border-radius: .25rem;
+}
+
+/* footer  ---------------------------------- */
+footer {
+    box-shadow: 1px 0px 4px 0px grey;
 }

@@ -49,7 +49,7 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'all_services' %}">All Services</a>
@@ -108,7 +108,16 @@
     {% block content %}
     {% endblock %}
 
-    {% block postloadjs %}
+    <!-- footer customized from https://mdbootstrap.com/docs/standard/navigation/footer/ -->
+<footer class="bg-light text-center text-lg-start fixed-bottom">
+    <!-- Copyright -->
+    <div class="text-center p-3">
+        @ Contact
+        <a class="text-dark" href="https://mdbootstrap.com/">Us</a>
+        :
+    </div>
+    <!-- Copyright -->
+</footer> {% block postloadjs %}
     <!-- <script type="text/javascript">
         $('.toast').toast('show'); -->
         <!-- // the above will show the message in any html element with the toast class -->
